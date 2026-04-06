@@ -6,8 +6,9 @@ function App() {
   const [isLoading, setIsLoading] = useState(true)
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [devOverlayVisible, setDevOverlayVisible] = useState(true)
+  const [devOverlayVisible, setDevOverlayVisible] = useState(false)
   const [logoText, setLogoText] = useState('Personal Web')
+  const [isFlipped, setIsFlipped] = useState(false)
 
   const t = content[currentLang]
 
@@ -41,18 +42,17 @@ function App() {
 
 
   const getProfileImage = () => {
-    switch(currentLang) {
+    switch (currentLang) {
       case 'ar': return 'img_web/picturear.png'
-      default: return 'img_web/picture.png'
+      case 'jp': return 'img_web/picture.png'
+      default: return 'img_web/picture_original.png'
     }
   }
 
   if (isLoading) {
     return (
       <div id="preloader">
-        <img src="img_web/footerlogo.png" alt="Logo" className="preloader-logo" />
         <div className="loading-spinner"></div>
-        <p>Loading...</p>
       </div>
     )
   }
@@ -62,7 +62,7 @@ function App() {
       {devOverlayVisible && (
         <div id="development-overlay">
           <div className="development-notice">
-            <p>⚠️ This website is under development!</p>
+            <p>This website is under development!</p>
             <button id="close-notice" onClick={() => setDevOverlayVisible(false)}>
               Got it!
             </button>
@@ -78,8 +78,8 @@ function App() {
               {logoText}
             </span>
           </div>
-          
-          <button 
+
+          <button
             className={`mobile-menu-toggle ${mobileMenuOpen ? 'active' : ''}`}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
@@ -123,7 +123,7 @@ function App() {
                 <li><a href="#" onClick={(e) => { e.preventDefault(); handleLanguageChange('jp') }}>🇯🇵 日本語</a></li>
                 <li><a href="#" onClick={(e) => { e.preventDefault(); handleLanguageChange('ar') }}>🇸🇦 العربية</a></li>
                 <li><a href="#" onClick={(e) => { e.preventDefault(); handleLanguageChange('id') }}>🇮🇩 Indonesia</a></li>
-                <li><a href="#" onClick={(e) => { e.preventDefault(); handleLanguageChange('mg') }}>🇮🇩 Minang</a></li>
+                <li><a href="#" onClick={(e) => { e.preventDefault(); handleLanguageChange('mg') }}>🇮🇩 Padang</a></li>
               </ul>
             </li>
           </ul>
@@ -134,8 +134,19 @@ function App() {
         {/* About Section */}
         <section id="about" className="section">
           <div className="about-wrapper">
-            <div className="banner">
-              <img src={getProfileImage()} alt="Profile" className="profile-img" />
+            <div className="banner" onClick={() => setIsFlipped(!isFlipped)} style={{ cursor: 'pointer' }}>
+              <p>Clik to Flip</p>
+              <div className={`flip-card ${isFlipped ? 'flipped' : ''}`}>
+                <div className="flip-card-inner">
+                  <div className="flip-card-front">
+                    <img src={getProfileImage()} alt="Profile" className="profile-img" />
+                  </div>
+                  <div className="flip-card-back">
+                    <div className="back-content">
+                      <a href="https://uwebly.com" target="_blank" rel="noreferrer">Uwebly.com</a>                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="about-container">
               <h2>{t.about.title}</h2>

@@ -26,7 +26,8 @@ export const content = {
             { name: "Capcut", icon: "icons/capcut.png", progress: 85, description: "Mobile video editing app with powerful features for quick edits." },
             { name: "Canva", icon: "icons/canva.webp", progress: 90, description: "Graphic design tool for creating stunning visuals and presentations." },
             { name: "Figma", icon: "icons/figma.png", progress: 85, description: "Collaborative interface design tool for UI/UX prototyping." },
-            { name: "Filmora", icon: "icons/filmora.png", progress: 75, description: "User-friendly video editor with advanced effects and templates." }
+            { name: "Filmora", icon: "icons/filmora.png", progress: 75, description: "User-friendly video editor with advanced effects and templates." },
+            { name: "Ibis Paint", icon: "https://play-lh.googleusercontent.com/s8moWkCF9wE-ynJgNyq8k3uhhVlbQLdphqTYJWkrsLRxkFZxx9FvykHmwXYmTl_h0l8", progress: 25, description: "Popular digital painting app for creating illustrations and artwork." }
           ]
         },
         {
@@ -40,7 +41,9 @@ export const content = {
             { name: "Laravel", icon: "icons/laravel.png", progress: 70, description: "PHP framework for building robust web applications." },
             { name: "PHP", icon: "icons/php.png", progress: 75, description: "Server-side scripting language for dynamic web development." },
             { name: "Kotlin", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg", progress: 10, description: "Modern programming language for Android development." },
-            { name: "Flutter", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg", progress: 5, description: "UI toolkit for building natively compiled applications." }
+            { name: "Flutter", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg", progress: 5, description: "UI toolkit for building natively compiled applications." },
+            { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg", progress: 15, description: "NoSQL database for storing and managing document-oriented data." },
+            { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg", progress: 20, description: "Advanced open-source relational database system." }
           ]
         },
         {
@@ -85,7 +88,7 @@ export const content = {
       phone: "+6281779546781"
     },
     footer: {
-      text: "© 2025 Umar Fauzan Irvan. All rights reserved."
+      text: "© 2026 Umar Fauzan Irvan. All rights reserved."
     }
   },
   jp: {
@@ -114,7 +117,8 @@ export const content = {
             { name: "Capcut", icon: "icons/capcut.png", progress: 85, description: "迅速な編集のための強力な機能を備えたモバイルビデオ編集アプリ。" },
             { name: "Canva", icon: "icons/canva.webp", progress: 90, description: "素晴らしいビジュアルとプレゼンテーションを作成するためのグラフィックデザインツール。" },
             { name: "Figma", icon: "icons/figma.png", progress: 85, description: "UI/UXプロトタイピングのための協働インターフェースデザインツール。" },
-            { name: "Filmora", icon: "icons/filmora.png", progress: 75, description: "高度な効果とテンプレートを備えた使いやすいビデオエディタ。" }
+            { name: "Filmora", icon: "icons/filmora.png", progress: 75, description: "高度な効果とテンプレートを備えた使いやすいビデオエディタ。" },
+            { name: "Ibis Paint", icon: "https://play-lh.googleusercontent.com/s8moWkCF9wE-ynJgNyq8k3uhhVlbQLdphqTYJWkrsLRxkFZxx9FvykHmwXYmTl_h0l8", progress: 25, description: "イラストやアートワークを作成するための人気デジタルペインティングアプリ。" }
           ]
         },
         {
@@ -128,7 +132,9 @@ export const content = {
             { name: "Laravel", icon: "icons/laravel.png", progress: 70, description: "堅牢なウェブアプリケーションを構築するためのPHPフレームワーク。" },
             { name: "PHP", icon: "icons/php.png", progress: 75, description: "動的なウェブ開発のためのサーバーサイドスクリプト言語。" },
             { name: "Kotlin", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg", progress: 10, description: "Android開発のためのモダンなプログラミング言語。" },
-            { name: "Flutter", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg", progress: 5, description: "ネイティブコンパイルアプリケーションを構築するためのUIツールキット。" }
+            { name: "Flutter", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg", progress: 5, description: "ネイティブコンパイルアプリケーションを構築するためのUIツールキット。" },
+            { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg", progress: 15, description: "ドキュメント指向データを保存・管理するためのNoSQLデータベース。" },
+            { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg", progress: 20, description: "高度なオープンソースリレーショナルデータベースシステム。" }
           ]
         },
         {
@@ -173,7 +179,7 @@ export const content = {
       phone: "+6281779546781"
     },
     footer: {
-      text: "© 2025 ウマル・ファウザン・イルヴァン。全著作権所有。"
+      text: "© 2026 ウマル・ファウザン・イルヴァン。全著作権所有。"
     }
   },
   ar: {
@@ -202,7 +208,8 @@ export const content = {
             { name: "Capcut", icon: "icons/capcut.png", progress: 85, description: "تطبيق تحرير فيديو للهاتف المحمول مع ميزات قوية للتحرير السريع." },
             { name: "Canva", icon: "icons/canva.webp", progress: 90, description: "أداة تصميم جرافيك لإنشاء صور وعروض تقديمية مذهلة." },
             { name: "Figma", icon: "icons/figma.png", progress: 85, description: "أداة تصميم واجهات تعاونية لنمذجة UI/UX." },
-            { name: "Filmora", icon: "icons/filmora.png", progress: 75, description: "محرر فيديو سهل الاستخدام مع تأثيرات وقوالب متقدمة." }
+            { name: "Filmora", icon: "icons/filmora.png", progress: 75, description: "محرر فيديو سهل الاستخدام مع تأثيرات وقوالب متقدمة." },
+            { name: "Ibis Paint", icon: "https://play-lh.googleusercontent.com/s8moWkCF9wE-ynJgNyq8k3uhhVlbQLdphqTYJWkrsLRxkFZxx9FvykHmwXYmTl_h0l8", progress: 25, description: "تطبيق رسم رقمي شائع لإنشاء الرسوم التوضيحية والأعمال الفنية." }
           ]
         },
         {
@@ -216,7 +223,9 @@ export const content = {
             { name: "Laravel", icon: "icons/laravel.png", progress: 70, description: "إطار عمل PHP لبناء تطبيقات ويب قوية." },
             { name: "PHP", icon: "icons/php.png", progress: 75, description: "لغة برمجة نصية من جانب الخادم للتطوير الديناميكي للويب." },
             { name: "Kotlin", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg", progress: 10, description: "لغة برمجة حديثة لتطوير تطبيقات الأندرويد." },
-            { name: "Flutter", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg", progress: 5, description: "أدوات واجهة المستخدم لبناء تطبيقات مترجمة بشكل أصلي." }
+            { name: "Flutter", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg", progress: 5, description: "أدوات واجهة المستخدم لبناء تطبيقات مترجمة بشكل أصلي." },
+            { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg", progress: 15, description: "قاعدة بيانات NoSQL لتخزين وإدارة البيانات الموجهة للمستندات." },
+            { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg", progress: 20, description: "نظام قاعدة بيانات علائقية متقدم مفتوح المصدر." }
           ]
         },
         {
@@ -261,7 +270,7 @@ export const content = {
       phone: "+6281779546781"
     },
     footer: {
-      text: "© 2025 عمر فوزان إرفان. جميع الحقوق محفوظة."
+      text: "© 2026 عمر فوزان إرفان. جميع الحقوق محفوظة."
     }
   },
   id: {
@@ -290,7 +299,8 @@ export const content = {
             { name: "Capcut", icon: "icons/capcut.png", progress: 85, description: "Aplikasi editing video mobile dengan fitur canggih untuk edit cepat." },
             { name: "Canva", icon: "icons/canva.webp", progress: 90, description: "Alat desain grafis untuk membuat visual dan presentasi yang menakjubkan." },
             { name: "Figma", icon: "icons/figma.png", progress: 85, description: "Alat desain antarmuka kolaboratif untuk prototyping UI/UX." },
-            { name: "Filmora", icon: "icons/filmora.png", progress: 75, description: "Editor video yang mudah digunakan dengan efek dan template canggih." }
+            { name: "Filmora", icon: "icons/filmora.png", progress: 75, description: "Editor video yang mudah digunakan dengan efek dan template canggih." },
+            { name: "Ibis Paint", icon: "https://play-lh.googleusercontent.com/s8moWkCF9wE-ynJgNyq8k3uhhVlbQLdphqTYJWkrsLRxkFZxx9FvykHmwXYmTl_h0l8", progress: 25, description: "Aplikasi lukisan digital populer untuk membuat ilustrasi dan karya seni." }
           ]
         },
         {
@@ -304,7 +314,9 @@ export const content = {
             { name: "Laravel", icon: "icons/laravel.png", progress: 70, description: "Framework PHP untuk membangun aplikasi web yang handal." },
             { name: "PHP", icon: "icons/php.png", progress: 75, description: "Bahasa scripting server-side untuk pengembangan web dinamis." },
             { name: "Kotlin", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg", progress: 10, description: "Bahasa pemrograman modern untuk pengembangan Android." },
-            { name: "Flutter", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg", progress: 5, description: "UI toolkit untuk membangun aplikasi yang dikompilasi secara native." }
+            { name: "Flutter", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg", progress: 5, description: "UI toolkit untuk membangun aplikasi yang dikompilasi secara native." },
+            { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg", progress: 15, description: "Database NoSQL untuk menyimpan dan mengelola data berorientasi dokumen." },
+            { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg", progress: 20, description: "Sistem database relasional open-source yang canggih." }
           ]
         },
         {
@@ -349,7 +361,7 @@ export const content = {
       phone: "+6281779546781"
     },
     footer: {
-      text: "© 2025 Umar Fauzan Irvan. Hak cipta dilindungi."
+      text: "© 2026 Umar Fauzan Irvan. Hak cipta dilindungi."
     }
   },
   mg: {
@@ -363,9 +375,9 @@ export const content = {
     about: {
       title: "Tantang Ambo",
       description: [
-        "Apak kaba! Ambo <strong>Umar Fauzan</strong>, seorang siswa di SMK Wikrama Bogor yang tertarik dengan teknologi, pemrograman game, dan desain web.",
-        "Saat ini ambo sadang menempuh pendidikan kejuruan dengan tujuan manjadi <strong>Front-End Developer</strong> dan <strong>UI/UX Designer</strong>. Moga-moga tercapai!",
-        "Lahir tahun 2008, ambo punyo hobi main game, membuat game, dan olahraga favorit ambo adolah badminton."
+        "Halo! Ambo <strong>Umar Fauzan</strong>, urang siswa di SMK Wikrama Bogor nan tatarik jo teknologi, pemrograman game, jo desain web.",
+        "Saat ini ambo sadang menempuh pendidikan kajuruan dengan tujuan manjadi <strong>Front-End Developer</strong> dan <strong>UI/UX Designer</strong>. Moga-moga tercapai!",
+        "Ambo Lahia tahun 2008, ambo punyo hobi main game, mambuek game, jo olahraga favorit ambo adolah badminton."
       ]
     },
     skills: {
@@ -378,7 +390,8 @@ export const content = {
             { name: "Capcut", icon: "icons/capcut.png", progress: 85, description: "Aplikasi editing video mobile dengan fitur canggih untuk edit cepat." },
             { name: "Canva", icon: "icons/canva.webp", progress: 90, description: "Alat desain grafis untuk membuat visual dan presentasi yang menakjubkan." },
             { name: "Figma", icon: "icons/figma.png", progress: 85, description: "Alat desain antarmuka kolaboratif untuk prototyping UI/UX." },
-            { name: "Filmora", icon: "icons/filmora.png", progress: 75, description: "Editor video yang mudah digunakan dengan efek dan template canggih." }
+            { name: "Filmora", icon: "icons/filmora.png", progress: 75, description: "Editor video yang mudah digunakan dengan efek dan template canggih." },
+            { name: "Ibis Paint", icon: "https://play-lh.googleusercontent.com/s8moWkCF9wE-ynJgNyq8k3uhhVlbQLdphqTYJWkrsLRxkFZxx9FvykHmwXYmTl_h0l8", progress: 25, description: "Aplikasi lukisan digital populer untuk membuat ilustrasi dan karya seni." }
           ]
         },
         {
@@ -392,7 +405,9 @@ export const content = {
             { name: "Laravel", icon: "icons/laravel.png", progress: 70, description: "Framework PHP untuk membangun aplikasi web yang handal." },
             { name: "PHP", icon: "icons/php.png", progress: 75, description: "Bahasa scripting server-side untuk pengembangan web dinamis." },
             { name: "Kotlin", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg", progress: 10, description: "Bahasa pemrograman modern untuk pengembangan Android." },
-            { name: "Flutter", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg", progress: 5, description: "UI toolkit for building natively compiled applications." }
+            { name: "Flutter", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg", progress: 5, description: "UI toolkit untuk membangun aplikasi yang dikompilasi secara native." },
+            { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg", progress: 15, description: "Database NoSQL untuk menyimpan dan mengelola data berorientasi dokumen." },
+            { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg", progress: 20, description: "Sistem database relasional open-source yang canggih." }
           ]
         },
         {
@@ -437,7 +452,7 @@ export const content = {
       phone: "+6281779546781"
     },
     footer: {
-      text: "© 2025 Umar Fauzan Irvan. Hak cipta dilindungi."
+      text: "© 2026 Umar Fauzan Irvan. Hak cipta dilindungi."
     }
   }
 };
