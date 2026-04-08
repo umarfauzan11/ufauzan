@@ -33,17 +33,17 @@ export const content = {
         {
           name: "Programming",
           skills: [
-            { name: "HTML", icon: "icons/html.png", progress: 95, description: "Markup language for structuring web content." },
-            { name: "CSS", icon: "icons/css.png", progress: 90, description: "Styling language for designing web layouts and appearances." },
-            { name: "JavaScript", icon: "icons/js.png", progress: 85, description: "Programming language for interactive web development." },
-            { name: "ReactJS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg", progress: 40, description: "JavaScript library for building user interfaces." },
-            { name: "Bootstrap", icon: "icons/bootstrap.png", progress: 80, description: "CSS framework for responsive and mobile-first web design." },
-            { name: "Laravel", icon: "icons/laravel.png", progress: 70, description: "PHP framework for building robust web applications." },
-            { name: "PHP", icon: "icons/php.png", progress: 75, description: "Server-side scripting language for dynamic web development." },
-            { name: "Kotlin", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg", progress: 10, description: "Modern programming language for Android development." },
-            { name: "Flutter", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg", progress: 5, description: "UI toolkit for building natively compiled applications." },
-            { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg", progress: 15, description: "NoSQL database for storing and managing document-oriented data." },
-            { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg", progress: 20, description: "Advanced open-source relational database system." }
+            { name: "HTML", icon: "icons/html.png", progress: 95, url: "https://dev.w3.org/html5/spec-LC/", description: "Markup language for structuring web content." },
+            { name: "CSS", icon: "icons/css.png", progress: 90, url: "https://www.w3.org/Style/CSS/Overview.en.html", description: "Styling language for designing web layouts and appearances." },
+            { name: "JavaScript", icon: "icons/js.png", progress: 85, url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript", description: "Programming language for interactive web development." },
+            { name: "ReactJS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg", progress: 40, url: "https://react.dev/", description: "JavaScript library for building user interfaces." },
+            { name: "Bootstrap", icon: "icons/bootstrap.png", progress: 80, url: "https://getbootstrap.com/", description: "CSS framework for responsive and mobile-first web design." },
+            { name: "Laravel", icon: "icons/laravel.png", progress: 70, url: "https://laravel.com/", description: "PHP framework for building robust web applications." },
+            { name: "PHP", icon: "icons/php.png", progress: 75, url: "https://www.php.net/", description: "Server-side scripting language for dynamic web development." },
+            { name: "Kotlin", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg", progress: 10, url: "https://kotlinlang.org/", description: "Modern programming language for Android development." },
+            { name: "Flutter", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg", progress: 5, url: "https://flutter.dev/", description: "UI toolkit for building natively compiled applications." },
+            { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg", progress: 15, url: "https://www.mongodb.com/", description: "NoSQL database for storing and managing document-oriented data." },
+            { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg", progress: 20, url: "https://www.postgresql.org/", description: "Advanced open-source relational database system." }
           ]
         },
         {

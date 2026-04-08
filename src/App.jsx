@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { content } from './data/content'
 
 function App() {
@@ -7,8 +7,12 @@ function App() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [devOverlayVisible, setDevOverlayVisible] = useState(false)
-  const [logoText, setLogoText] = useState('Personal Web')
   const [isFlipped, setIsFlipped] = useState(false)
+  const [displayCounts, setDisplayCounts] = useState({})
+  const [skillsAnimated, setSkillsAnimated] = useState(false)
+  const skillsSectionRef = useRef(null)
+  const aboutSectionRef = useRef(null)
+  const [aboutAnimated, setAboutAnimated] = useState(false)
 
   const t = content[currentLang]
 
@@ -27,16 +31,110 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Logo text fade animation loop
+  // About Text Highlight Animation
   useEffect(() => {
-    const interval = setInterval(() => {
-      setLogoText(prev => prev === 'Personal Web' ? 'Umar Fauzan' : 'Personal Web')
-    }, 3000)
-    return () => clearInterval(interval)
-  }, [])
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0]
+        if (entry && entry.isIntersecting && !aboutAnimated) {
+          setAboutAnimated(true)
+          
+          // Add highlight classes to strong tags
+          setTimeout(() => {
+            const strongTags = document.querySelectorAll('.about-text strong')
+            strongTags.forEach((tag, index) => {
+              tag.classList.add('highlight-animated')
+              tag.classList.add(`highlight-delay-${index + 1}`)
+              
+              // RTL support for Arabic
+              if (currentLang === 'ar') {
+                tag.classList.add('highlight-rtl')
+              }
+            })
+          }, 600)
+        }
+      },
+      { threshold: 0.3 }
+    )
+
+    if (aboutSectionRef.current) {
+      observer.observe(aboutSectionRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [aboutAnimated, currentLang])
+
+  // Skills count animation
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0]
+        if (entry && entry.isIntersecting && !skillsAnimated) {
+          setSkillsAnimated(true)
+          const allSkills = t.skills.categories.flatMap((cat) => cat.skills)
+
+          // Initialize all counts to 0
+          const initialCounts = {}
+          allSkills.forEach(skill => {
+            initialCounts[skill.name] = 0
+          })
+          setDisplayCounts(initialCounts)
+
+          // Animate each skill with delay
+          allSkills.forEach((skill, index) => {
+            const target = skill.progress
+            const duration = 5000 // 5 seconds
+            const delay = index * 200 // 200ms delay per skill
+            const startTime = Date.now() + delay
+
+            const animate = () => {
+              const now = Date.now()
+              const elapsed = now - startTime
+
+              if (elapsed < 0) {
+                requestAnimationFrame(animate)
+                return
+              }
+
+              const progress = Math.min(elapsed / duration, 1)
+              const eased = 1 - Math.pow(1 - progress, 3)
+              const currentVal = Math.round(eased * target)
+
+              setDisplayCounts(prev => ({
+                ...prev,
+                [skill.name]: currentVal
+              }))
+
+              if (progress < 1) {
+                requestAnimationFrame(animate)
+              }
+            }
+
+            requestAnimationFrame(animate)
+          })
+        }
+      },
+      { threshold: 0.2 }
+    )
+
+    if (skillsSectionRef.current) {
+      observer.observe(skillsSectionRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [t.skills.categories, skillsAnimated])
 
   const handleLanguageChange = (lang) => {
     setCurrentLang(lang)
+    setMobileMenuOpen(false)
+  }
+
+  const scrollToSection = (e, sectionId) => {
+    e.preventDefault()
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
     setMobileMenuOpen(false)
   }
 
@@ -74,8 +172,8 @@ function App() {
       <header className={isScrolled ? 'header-scrolled' : ''}>
         <nav>
           <div className="nav-left">
-            <span className={`logo-text ${logoText === 'Personal Web' ? 'fade-in' : 'fade-out'}`}>
-              {logoText}
+            <span className="logo-text">
+              Personal Web
             </span>
           </div>
 
@@ -90,27 +188,27 @@ function App() {
 
           <ul className={`nav-right ${mobileMenuOpen ? 'active' : ''}`}>
             <li>
-              <a href="#about" onClick={() => setMobileMenuOpen(false)}>
+              <a href="#about" onClick={(e) => scrollToSection(e, 'about')}>
                 {t.nav.about}
               </a>
             </li>
             <li>
-              <a href="#skills" onClick={() => setMobileMenuOpen(false)}>
+              <a href="#skills" onClick={(e) => scrollToSection(e, 'skills')}>
                 {t.nav.skills}
               </a>
             </li>
             <li>
-              <a href="#certificates" onClick={() => setMobileMenuOpen(false)}>
+              <a href="#certificates" onClick={(e) => scrollToSection(e, 'certificates')}>
                 {t.nav.certificates}
               </a>
             </li>
             <li>
-              <a href="#projects" onClick={() => setMobileMenuOpen(false)}>
+              <a href="#projects" onClick={(e) => scrollToSection(e, 'projects')}>
                 {t.nav.projects}
               </a>
             </li>
             <li>
-              <a href="#contact" onClick={() => setMobileMenuOpen(false)}>
+              <a href="#contact" onClick={(e) => scrollToSection(e, 'contact')}>
                 {t.nav.contact}
               </a>
             </li>
@@ -132,7 +230,10 @@ function App() {
 
       <main>
         {/* About Section */}
-        <section id="about" className="section">
+        <section id="about" className="section" ref={aboutSectionRef}>
+          <div className="about-bg-image">
+            <img src="/img_web/frame_section.png" alt="" />
+          </div>
           <div className="about-wrapper">
             <div className="banner" onClick={() => setIsFlipped(!isFlipped)} style={{ cursor: 'pointer' }}>
               <p>Clik to Flip</p>
@@ -158,8 +259,8 @@ function App() {
         </section>
 
         {/* Skills Section */}
-        <section id="skills" className="section">
-          <h2>{t.skills.title}</h2>
+        <section id="skills" className="section" ref={skillsSectionRef}>
+          <h2 style={{color: 'white'}}>{t.skills.title}</h2>
           <div className="skills-grid">
             {t.skills.categories.map((category, catIndex) => (
               <div key={catIndex} className="skill-category">
@@ -167,14 +268,20 @@ function App() {
                 <div className="skills-subgrid">
                   {category.skills.map((skill, skillIndex) => (
                     <div key={skillIndex} className="skill">
-                      <img src={skill.icon} alt={skill.name} />
-                      <h3>{skill.name}</h3>
-                      <p>{skill.description}</p>
-                      <div className="skill-progress">
-                        <div className="progress-bar">
-                          <div style={{ width: `${skill.progress}%` }}></div>
-                        </div>
+                      <span className="skill-percentage">
+                        {skillsAnimated && displayCounts[skill.name] !== undefined ? displayCounts[skill.name] : skill.progress}%
+                      </span>
+                      <div className="skill-description">
+                        <p>{skill.description}</p>
+                        <h3 className="skill-name">{skill.name}</h3>
                       </div>
+                      <img src={skill.icon} alt={skill.name} className="skill-icon" />
+                      <a href={skill.url || 'https://google.com'} target="_blank" rel="noopener noreferrer" className="skill-link" title={`Visit ${skill.name} website`}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <line x1="7" y1="17" x2="17" y2="7"></line>
+                          <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
+                      </a>
                     </div>
                   ))}
                 </div>
@@ -185,7 +292,7 @@ function App() {
 
         {/* Certificates Section */}
         <section id="certificates" className="section">
-          <h2>{t.certificates.title}</h2>
+          <h2 className="certificates-title">{t.certificates.title}</h2>
           <div className="certificates-grid">
             {t.certificates.items.map((cert) => (
               <div key={cert.id} className="certificate">
