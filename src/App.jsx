@@ -15,6 +15,18 @@ function App() {
   const [aboutAnimated, setAboutAnimated] = useState(false)
   const [activeCertIndex, setActiveCertIndex] = useState(0)
   const certAutoSlideRef = useRef(null)
+  const [skillTitleImageIndex, setSkillTitleImageIndex] = useState(0)
+  const skillTitleImages = [
+    '/skills_text/skill1.png',
+    '/skills_text/skill2.png',
+    '/skills_text/skill3.png',
+    '/skills_text/skill4.png',
+    '/skills_text/skill5.png',
+    '/skills_text/Skills-4-9-2026.png'
+  ]
+  const skillTitleRef = useRef(null)
+  const skillTitleAnimated = useRef(false)
+  const [skillTitleClicked, setSkillTitleClicked] = useState(false)
 
   const t = content[currentLang]
 
@@ -40,14 +52,14 @@ function App() {
         const entry = entries[0]
         if (entry && entry.isIntersecting && !aboutAnimated) {
           setAboutAnimated(true)
-          
+
           // Add highlight classes to strong tags
           setTimeout(() => {
             const strongTags = document.querySelectorAll('.about-text strong')
             strongTags.forEach((tag, index) => {
               tag.classList.add('highlight-animated')
               tag.classList.add(`highlight-delay-${index + 1}`)
-              
+
               // RTL support for Arabic
               if (currentLang === 'ar') {
                 tag.classList.add('highlight-rtl')
@@ -114,6 +126,8 @@ function App() {
 
             requestAnimationFrame(animate)
           })
+
+          // Matikan auto animasi glitch otomatis, sekarang hanya bisa di klik manual
         }
       },
       { threshold: 0.2 }
@@ -274,7 +288,27 @@ function App() {
 
         {/* Skills Section */}
         <section id="skills" className="section" ref={skillsSectionRef}>
-          <h2 style={{color: 'white'}}>{t.skills.title}</h2>
+          <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+            <img
+              src={skillTitleImages[skillTitleImageIndex]}
+              alt="Skills Title"
+              style={{
+                height: '64px',
+                maxWidth: '100%',
+                display: 'inline-block',
+                cursor: 'pointer',
+                transition: 'transform 0.15s cubic-bezier(0.2, 0.8, 0.2, 1)',
+                transform: skillTitleClicked ? 'scale(0.9)' : 'scale(1)'
+              }}
+onMouseDown={(e) => {
+                e.stopPropagation()
+                e.preventDefault()
+                setSkillTitleClicked(true)
+                setTimeout(() => setSkillTitleClicked(false), 150)
+                setSkillTitleImageIndex(prev => (prev + 1) % skillTitleImages.length)
+              }}
+            />
+          </div>
           <div className="skills-grid">
             {t.skills.categories.map((category, catIndex) => (
               <div key={catIndex} className="skill-category">
@@ -311,32 +345,32 @@ function App() {
             <div className="certificates-carousel-3d">
               {/* Previous Certificate */}
               <div className="certificate-slide prev-slide">
-                <img 
-                  src={t.certificates.items[(activeCertIndex - 1 + t.certificates.items.length) % t.certificates.items.length].image} 
-                  alt="Previous" 
+                <img
+                  src={t.certificates.items[(activeCertIndex - 1 + t.certificates.items.length) % t.certificates.items.length].image}
+                  alt="Previous"
                   className="certificate-image"
                 />
               </div>
-              
+
               {/* Active Certificate */}
               <div className="certificate-slide active-slide">
-                <img 
-                  src={t.certificates.items[activeCertIndex].image} 
-                  alt={t.certificates.items[activeCertIndex].name} 
+                <img
+                  src={t.certificates.items[activeCertIndex].image}
+                  alt={t.certificates.items[activeCertIndex].name}
                   className="certificate-image"
                 />
               </div>
-              
+
               {/* Next Certificate */}
               <div className="certificate-slide next-slide">
-                <img 
-                  src={t.certificates.items[(activeCertIndex + 1) % t.certificates.items.length].image} 
-                  alt="Next" 
+                <img
+                  src={t.certificates.items[(activeCertIndex + 1) % t.certificates.items.length].image}
+                  alt="Next"
                   className="certificate-image"
                 />
               </div>
             </div>
-            
+
             <div className="certificate-info">
               <h3>{t.certificates.items[activeCertIndex].name}</h3>
               <p>{t.certificates.items[activeCertIndex].date}</p>
@@ -348,13 +382,13 @@ function App() {
                   <polyline points="15 18 9 12 15 6"></polyline>
                 </svg>
               </button>
-              
+
               <div className="slider-dots">
                 {t.certificates.items.map((_, index) => (
                   <span key={index} className={`dot ${index === activeCertIndex ? 'active' : ''}`} onClick={() => setActiveCertIndex(index)}></span>
                 ))}
               </div>
-              
+
               <button className="slider-btn next-btn" onClick={nextCert}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="9 18 15 12 9 6"></polyline>

@@ -377,7 +377,7 @@ main {
 
 /* Custom Cursive Font for Certificates Title Only */
 .certificates-title {
-  font-family: 'Dancing Script', 'Pacifico', cursive;
+  font-family: "Dancing Script", "Pacifico", cursive;
   font-size: 3.1rem !important;
   font-weight: normal;
   letter-spacing: 2px;
@@ -575,7 +575,7 @@ main {
 }
 
 .about-text strong::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -628,9 +628,33 @@ html[dir="rtl"] .about-text strong::before,
 
 /* Skills Section */
 .section#skills {
-  background-color: #1a1a2e;
+  background: linear-gradient(
+    180deg,
+    rgba(246, 248, 241, 1) 0%,
+    rgba(39, 57, 80, 1) 27%,
+    rgba(39, 57, 80, 1) 88%,
+    rgba(246, 248, 241, 1) 100%
+  );
   padding: 64px 24px;
   max-width: 100%;
+}
+
+.section#contact {
+  background: rgba(39, 57, 80, 1);
+  border-radius: 10px;
+  margin: 1rem;
+}
+
+.section#contact h2 {
+  color: #f7f8f0;
+}
+
+.contact-info p {
+  color: #f7f8f0;
+}
+
+.contact-info strong {
+  color: #f7f8f0 !important;
 }
 
 .skills-grid {
@@ -670,15 +694,18 @@ html[dir="rtl"] .about-text strong::before,
 }
 
 /* Arah animasi tiap baris */
-.skill-category:nth-child(1) .skills-subgrid { /* DESIGN = KE KIRI */
+.skill-category:nth-child(1) .skills-subgrid {
+  /* DESIGN = KE KIRI */
   animation: marqueeLeft 25s linear infinite;
 }
 
-.skill-category:nth-child(2) .skills-subgrid { /* PROGRAMMING = KE KANAN */
+.skill-category:nth-child(2) .skills-subgrid {
+  /* PROGRAMMING = KE KANAN */
   animation: marqueeRight 25s linear infinite;
 }
 
-.skill-category:nth-child(3) .skills-subgrid { /* GAME DEV = KE KIRI */
+.skill-category:nth-child(3) .skills-subgrid {
+  /* GAME DEV = KE KIRI */
   animation: marqueeLeft 25s linear infinite;
 }
 
@@ -833,7 +860,7 @@ html[dir="rtl"] .about-text strong::before,
   transform: translateX(0) scale(1);
   opacity: 1;
   z-index: 10;
-  box-shadow: 0 14px 50px rgba(0,0,0,0.25);
+  box-shadow: 0 14px 50px rgba(0, 0, 0, 0.25);
 }
 
 .certificate-slide.next-slide {
