@@ -13,6 +13,8 @@ function App() {
   const skillsSectionRef = useRef(null)
   const aboutSectionRef = useRef(null)
   const [aboutAnimated, setAboutAnimated] = useState(false)
+  const [activeCertIndex, setActiveCertIndex] = useState(0)
+  const certAutoSlideRef = useRef(null)
 
   const t = content[currentLang]
 
@@ -139,6 +141,21 @@ function App() {
   }
 
 
+  // Certificate Slider Functions
+  const nextCert = () => {
+    setActiveCertIndex(prev => (prev + 1) % t.certificates.items.length)
+  }
+
+  const prevCert = () => {
+    setActiveCertIndex(prev => prev === 0 ? t.certificates.items.length - 1 : prev - 1)
+  }
+
+  // Auto slide certificate every 5 seconds
+  useEffect(() => {
+    certAutoSlideRef.current = setInterval(nextCert, 5000)
+    return () => clearInterval(certAutoSlideRef.current)
+  }, [t.certificates.items.length])
+
   const getProfileImage = () => {
     switch (currentLang) {
       case 'ar': return 'img_web/picturear.png'
@@ -231,9 +248,6 @@ function App() {
       <main>
         {/* About Section */}
         <section id="about" className="section" ref={aboutSectionRef}>
-          <div className="about-bg-image">
-            <img src="/img_web/frame_section.png" alt="" />
-          </div>
           <div className="about-wrapper">
             <div className="banner" onClick={() => setIsFlipped(!isFlipped)} style={{ cursor: 'pointer' }}>
               <p>Clik to Flip</p>
@@ -266,7 +280,7 @@ function App() {
               <div key={catIndex} className="skill-category">
                 <h3 className="category-title">{category.name}</h3>
                 <div className="skills-subgrid">
-                  {category.skills.map((skill, skillIndex) => (
+                  {[...category.skills, ...category.skills].map((skill, skillIndex) => (
                     <div key={skillIndex} className="skill">
                       <span className="skill-percentage">
                         {skillsAnimated && displayCounts[skill.name] !== undefined ? displayCounts[skill.name] : skill.progress}%
@@ -293,14 +307,60 @@ function App() {
         {/* Certificates Section */}
         <section id="certificates" className="section">
           <h2 className="certificates-title">{t.certificates.title}</h2>
-          <div className="certificates-grid">
-            {t.certificates.items.map((cert) => (
-              <div key={cert.id} className="certificate">
-                <img src={cert.image} alt={cert.name} />
-                <h3>{cert.name}</h3>
-                <p>{cert.date}</p>
+          <div className="certificates-slider">
+            <div className="certificates-carousel-3d">
+              {/* Previous Certificate */}
+              <div className="certificate-slide prev-slide">
+                <img 
+                  src={t.certificates.items[(activeCertIndex - 1 + t.certificates.items.length) % t.certificates.items.length].image} 
+                  alt="Previous" 
+                  className="certificate-image"
+                />
               </div>
-            ))}
+              
+              {/* Active Certificate */}
+              <div className="certificate-slide active-slide">
+                <img 
+                  src={t.certificates.items[activeCertIndex].image} 
+                  alt={t.certificates.items[activeCertIndex].name} 
+                  className="certificate-image"
+                />
+              </div>
+              
+              {/* Next Certificate */}
+              <div className="certificate-slide next-slide">
+                <img 
+                  src={t.certificates.items[(activeCertIndex + 1) % t.certificates.items.length].image} 
+                  alt="Next" 
+                  className="certificate-image"
+                />
+              </div>
+            </div>
+            
+            <div className="certificate-info">
+              <h3>{t.certificates.items[activeCertIndex].name}</h3>
+              <p>{t.certificates.items[activeCertIndex].date}</p>
+            </div>
+
+            <div className="slider-controls">
+              <button className="slider-btn prev-btn" onClick={prevCert}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+              </button>
+              
+              <div className="slider-dots">
+                {t.certificates.items.map((_, index) => (
+                  <span key={index} className={`dot ${index === activeCertIndex ? 'active' : ''}`} onClick={() => setActiveCertIndex(index)}></span>
+                ))}
+              </div>
+              
+              <button className="slider-btn next-btn" onClick={nextCert}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </button>
+            </div>
           </div>
         </section>
 
