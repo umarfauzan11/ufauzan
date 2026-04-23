@@ -85,7 +85,7 @@ function App() {
               tag.classList.add('highlight-animated')
               tag.classList.add(`highlight-delay-${index + 1}`)
 
-              
+
             })
           }, 600)
         }
@@ -245,7 +245,7 @@ function App() {
               <section id="about" className="typography-section" ref={aboutSectionRef}>
                 <div className="typography-container">
                   <div className="about-wrapper">
-                      <img src={getProfileImage()} alt="Profile" className="profile-img" />
+                    <img src={getProfileImage()} alt="Profile" className="profile-img" />
                     <div className="about-content">
                       <h2 className="typography-h1">Tentang Saya</h2>
                       {t.about.description.map((paragraph, index) => (
@@ -367,9 +367,10 @@ function App() {
                   <p className="typography-body">{t.gameProject.description}</p>
                   <div className="typography-spacer-xl"></div>
                   <div className="typography-display">{t.gameProject.percentage}%</div>
-                  <div className="progress-bar">
-                    <div style={{ width: `${t.gameProject.percentage}%` }}></div>
+                  <div class="progress-bar">
+                    <div class="progress-fill" style={{ width: '25%' }}></div>
                   </div>
+
                 </div>
               </section>
 
@@ -379,106 +380,106 @@ function App() {
                   <h2 className="typography-h1">Proyek</h2>
                   <div className="typography-spacer-l"></div>
 
-            <div className="projects-grid">
-              {t.projects.items.map((project, index) => (
-                <div key={project.id} className="project-card">
-                  <div className="project-info">
-                    <div className="project-header">
-                      <h2>{project.name} <span>for {project.client || 'Personal Project'}</span></h2>
-                      <a href={project.url} target="_blank" rel="noopener noreferrer" className="project-arrow">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <line x1="7" y1="17" x2="17" y2="7"></line>
-                          <polyline points="7 7 17 7 17 17"></polyline>
-                        </svg>
-                      </a>
-                    </div>
-                    <p className="typography-lead" style={{ opacity: 0.5 }}>{project.description}</p>
-                  </div>
-
-                  <div className="project-mockup">
-                    {index % 2 === 0 ? (
-                      <>
-                        <div className="project-bg-preview">
-                          <img src={project.screenshot || project.image} alt={project.name} />
+                  <div className="projects-grid">
+                    {t.projects.items.map((project, index) => (
+                      <div key={project.id} className="project-card">
+                        <div className="project-info">
+                          <div className="project-header">
+                            <h2>{project.name} <span>for {project.client || 'Personal Project'}</span></h2>
+                            <a href={project.url} target="_blank" rel="noopener noreferrer" className="project-arrow">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <line x1="7" y1="17" x2="17" y2="7"></line>
+                                <polyline points="7 7 17 7 17 17"></polyline>
+                              </svg>
+                            </a>
+                          </div>
+                          <p className="typography-lead" style={{ opacity: 0.5 }}>{project.description}</p>
                         </div>
-                        
-                        <div className="project-phone">
-                          <div className="phone-glass">
-                            <div className="phone-screen">
-                              <div className="phone-notch"></div>
-                              <img src={project.screenshot || project.image} alt={project.name} className="phone-screenshot" />
+
+                        <div className="project-mockup">
+                          {index % 2 === 0 ? (
+                            <>
+                              <div className="project-bg-preview">
+                                <img src={project.screenshot || project.image} alt={project.name} />
+                              </div>
+
+                              <div className="project-phone">
+                                <div className="phone-glass">
+                                  <div className="phone-screen">
+                                    <div className="phone-notch"></div>
+                                    <img src={project.screenshot || project.image} alt={project.name} className="phone-screenshot" />
+                                  </div>
+                                </div>
+                              </div>
+                            </>
+                          ) : (
+                            <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden', padding: '24px' }}>
+
+                              {/* Background Bento Cards */}
+                              <div style={{
+                                position: 'absolute',
+                                width: '100%',
+                                height: '100%',
+                                display: 'grid',
+                                gridTemplateColumns: 'repeat(4, 1fr)',
+                                gridTemplateRows: 'repeat(5, 1fr)',
+                                gap: '8px',
+                                padding: '20px',
+                                opacity: 0.08
+                              }}>
+                                <div style={{ background: '#1a1a2e', borderRadius: '14px', gridColumn: 'span 2', gridRow: 'span 2', padding: '12px' }}>
+                                  <div style={{ width: '60%', height: '8px', background: 'white', borderRadius: '4px', marginBottom: '8px' }}></div>
+                                  <div style={{ width: '80%', height: '6px', background: 'white', borderRadius: '3px', opacity: 0.3 }}></div>
+                                </div>
+                                <div style={{ background: '#1a1a2e', borderRadius: '12px', gridColumn: 'span 2', padding: '8px' }}>
+                                  <div style={{ width: '70%', height: '6px', background: 'white', borderRadius: '3px' }}></div>
+                                </div>
+                                <div style={{ background: '#1a1a2e', borderRadius: '12px', gridRow: 'span 2', padding: '8px' }}>
+                                  <div style={{ width: '100%', height: '50%', background: 'white', borderRadius: '6px', opacity: 0.2 }}></div>
+                                </div>
+                                <div style={{ background: '#1a1a2e', borderRadius: '10px', padding: '6px' }}>
+                                  <div style={{ width: '100%', height: '100%', borderRadius: '4px', background: 'white', opacity: 0.15 }}></div>
+                                </div>
+                                <div style={{ background: '#1a1a2e', borderRadius: '14px', gridColumn: 'span 2', gridRow: 'span 2', padding: '12px' }}>
+                                  <div style={{ width: '40%', height: '12px', background: 'white', borderRadius: '6px', marginBottom: '8px' }}></div>
+                                  <div style={{ width: '90%', height: '5px', background: 'white', borderRadius: '2px', opacity: 0.25, marginBottom: '4px' }}></div>
+                                  <div style={{ width: '75%', height: '5px', background: 'white', borderRadius: '2px', opacity: 0.15 }}></div>
+                                </div>
+                                <div style={{ background: '#1a1a2e', borderRadius: '10px', padding: '6px' }}>
+                                  <div style={{ width: '100%', height: '100%', borderRadius: '4px', background: 'white', opacity: 0.1 }}></div>
+                                </div>
+                                <div style={{ background: '#1a1a2e', borderRadius: '12px', gridColumn: 'span 3', padding: '8px' }}>
+                                  <div style={{ width: '50%', height: '6px', background: 'white', borderRadius: '3px' }}></div>
+                                </div>
+                                <div style={{ background: '#1a1a2e', borderRadius: '10px', padding: '6px' }}>
+                                  <div style={{ width: '100%', height: '100%', borderRadius: '4px', background: 'white', opacity: 0.08 }}></div>
+                                </div>
+                              </div>
+
+                              {/* Typography Stack */}
+                              {[100, 200, 300, 400, 500, 600, 700].map((weight, i) => (
+                                <h2
+                                  key={weight}
+                                  style={{
+                                    position: 'absolute',
+                                    fontWeight: weight,
+                                    opacity: 1 - (i * 0.12),
+                                    transform: `translateY(${i * 32}px)`,
+                                    fontSize: 'clamp(1.8rem, 4vw, 2.8rem)',
+                                    letterSpacing: '-0.03em',
+                                    margin: 0,
+                                    zIndex: 10 + i
+                                  }}
+                                >
+                                  Annishofie
+                                </h2>
+                              ))}
                             </div>
-                          </div>
+                          )}
                         </div>
-                      </>
-                    ) : (
-                      <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden', padding: '24px' }}>
-                        
-                        {/* Background Bento Cards */}
-                        <div style={{ 
-                          position: 'absolute', 
-                          width: '100%', 
-                          height: '100%',
-                          display: 'grid',
-                          gridTemplateColumns: 'repeat(4, 1fr)',
-                          gridTemplateRows: 'repeat(5, 1fr)',
-                          gap: '8px',
-                          padding: '20px',
-                          opacity: 0.08
-                        }}>
-                          <div style={{ background: '#1a1a2e', borderRadius: '14px', gridColumn: 'span 2', gridRow: 'span 2', padding: '12px' }}>
-                            <div style={{ width: '60%', height: '8px', background: 'white', borderRadius: '4px', marginBottom: '8px' }}></div>
-                            <div style={{ width: '80%', height: '6px', background: 'white', borderRadius: '3px', opacity: 0.3 }}></div>
-                          </div>
-                          <div style={{ background: '#1a1a2e', borderRadius: '12px', gridColumn: 'span 2', padding: '8px' }}>
-                            <div style={{ width: '70%', height: '6px', background: 'white', borderRadius: '3px' }}></div>
-                          </div>
-                          <div style={{ background: '#1a1a2e', borderRadius: '12px', gridRow: 'span 2', padding: '8px' }}>
-                            <div style={{ width: '100%', height: '50%', background: 'white', borderRadius: '6px', opacity: 0.2 }}></div>
-                          </div>
-                          <div style={{ background: '#1a1a2e', borderRadius: '10px', padding: '6px' }}>
-                            <div style={{ width: '100%', height: '100%', borderRadius: '4px', background: 'white', opacity: 0.15 }}></div>
-                          </div>
-                          <div style={{ background: '#1a1a2e', borderRadius: '14px', gridColumn: 'span 2', gridRow: 'span 2', padding: '12px' }}>
-                            <div style={{ width: '40%', height: '12px', background: 'white', borderRadius: '6px', marginBottom: '8px' }}></div>
-                            <div style={{ width: '90%', height: '5px', background: 'white', borderRadius: '2px', opacity: 0.25, marginBottom: '4px' }}></div>
-                            <div style={{ width: '75%', height: '5px', background: 'white', borderRadius: '2px', opacity: 0.15 }}></div>
-                          </div>
-                          <div style={{ background: '#1a1a2e', borderRadius: '10px', padding: '6px' }}>
-                            <div style={{ width: '100%', height: '100%', borderRadius: '4px', background: 'white', opacity: 0.1 }}></div>
-                          </div>
-                          <div style={{ background: '#1a1a2e', borderRadius: '12px', gridColumn: 'span 3', padding: '8px' }}>
-                            <div style={{ width: '50%', height: '6px', background: 'white', borderRadius: '3px' }}></div>
-                          </div>
-                          <div style={{ background: '#1a1a2e', borderRadius: '10px', padding: '6px' }}>
-                            <div style={{ width: '100%', height: '100%', borderRadius: '4px', background: 'white', opacity: 0.08 }}></div>
-                          </div>
-                        </div>
-
-                        {/* Typography Stack */}
-                        {[100, 200, 300, 400, 500, 600, 700].map((weight, i) => (
-                          <h2 
-                            key={weight} 
-                            style={{ 
-                              position: 'absolute',
-                              fontWeight: weight,
-                              opacity: 1 - (i * 0.12),
-                              transform: `translateY(${i * 32}px)`,
-                              fontSize: 'clamp(1.8rem, 4vw, 2.8rem)',
-                              letterSpacing: '-0.03em',
-                              margin: 0,
-                              zIndex: 10 + i
-                            }}
-                          >
-                            Annishofie
-                          </h2>
-                        ))}
                       </div>
-                    )}
+                    ))}
                   </div>
-                </div>
-              ))}
-            </div>
                 </div>
               </section>
 
