@@ -1,13 +1,13 @@
 import { useState, useEffect, useRef } from 'react'
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import { content } from './data/content'
+import Contact from './pages/Contact'
+import StyleGuide from './pages/StyleGuide'
 
 function App() {
-  const [currentLang, setCurrentLang] = useState('en')
   const [isLoading, setIsLoading] = useState(true)
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [devOverlayVisible, setDevOverlayVisible] = useState(false)
-  const [isFlipped, setIsFlipped] = useState(false)
   const [displayCounts, setDisplayCounts] = useState({})
   const [skillsAnimated, setSkillsAnimated] = useState(false)
   const skillsSectionRef = useRef(null)
@@ -15,20 +15,31 @@ function App() {
   const [aboutAnimated, setAboutAnimated] = useState(false)
   const [activeCertIndex, setActiveCertIndex] = useState(0)
   const certAutoSlideRef = useRef(null)
-  const [skillTitleImageIndex, setSkillTitleImageIndex] = useState(0)
-  const skillTitleImages = [
-    '/skills_text/skill1.png',
-    '/skills_text/skill2.png',
-    '/skills_text/skill3.png',
-    '/skills_text/skill4.png',
-    '/skills_text/skill5.png',
-    '/skills_text/Skills-4-9-2026.png'
-  ]
-  const skillTitleRef = useRef(null)
-  const skillTitleAnimated = useRef(false)
-  const [skillTitleClicked, setSkillTitleClicked] = useState(false)
 
-  const t = content[currentLang]
+  const t = content.id
+
+  // Tambahkan state dan ref baru
+  const [certsAnimated, setCertsAnimated] = useState(false)
+  const certsSectionRef = useRef(null)
+
+  // Tambahkan useEffect baru untuk animate certificates
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0]
+        if (entry && entry.isIntersecting && !certsAnimated) {
+          setCertsAnimated(true)
+        }
+      },
+      { threshold: 0.3 }
+    )
+
+    if (certsSectionRef.current) {
+      observer.observe(certsSectionRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [certsAnimated])
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -37,10 +48,25 @@ function App() {
     return () => clearTimeout(timer)
   }, [])
 
+  // Scroll Detection & Section Animation
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
+
+      // Animate sections when they enter viewport
+      document.querySelectorAll('.typography-section').forEach(section => {
+        const rect = section.getBoundingClientRect()
+        const isInView = rect.top < window.innerHeight * 0.75
+
+        if (isInView) {
+          section.classList.add('in-view')
+        }
+      })
     }
+
+    // Initial check on load
+    handleScroll()
+
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
@@ -53,17 +79,13 @@ function App() {
         if (entry && entry.isIntersecting && !aboutAnimated) {
           setAboutAnimated(true)
 
-          // Add highlight classes to strong tags
           setTimeout(() => {
             const strongTags = document.querySelectorAll('.about-text strong')
             strongTags.forEach((tag, index) => {
               tag.classList.add('highlight-animated')
               tag.classList.add(`highlight-delay-${index + 1}`)
 
-              // RTL support for Arabic
-              if (currentLang === 'ar') {
-                tag.classList.add('highlight-rtl')
-              }
+              
             })
           }, 600)
         }
@@ -76,7 +98,7 @@ function App() {
     }
 
     return () => observer.disconnect()
-  }, [aboutAnimated, currentLang])
+  }, [aboutAnimated])
 
   // Skills count animation
   useEffect(() => {
@@ -87,18 +109,16 @@ function App() {
           setSkillsAnimated(true)
           const allSkills = t.skills.categories.flatMap((cat) => cat.skills)
 
-          // Initialize all counts to 0
           const initialCounts = {}
           allSkills.forEach(skill => {
             initialCounts[skill.name] = 0
           })
           setDisplayCounts(initialCounts)
 
-          // Animate each skill with delay
           allSkills.forEach((skill, index) => {
             const target = skill.progress
-            const duration = 5000 // 5 seconds
-            const delay = index * 200 // 200ms delay per skill
+            const duration = 5000
+            const delay = index * 200
             const startTime = Date.now() + delay
 
             const animate = () => {
@@ -126,8 +146,6 @@ function App() {
 
             requestAnimationFrame(animate)
           })
-
-          // Matikan auto animasi glitch otomatis, sekarang hanya bisa di klik manual
         }
       },
       { threshold: 0.2 }
@@ -140,11 +158,6 @@ function App() {
     return () => observer.disconnect()
   }, [t.skills.categories, skillsAnimated])
 
-  const handleLanguageChange = (lang) => {
-    setCurrentLang(lang)
-    setMobileMenuOpen(false)
-  }
-
   const scrollToSection = (e, sectionId) => {
     e.preventDefault()
     const element = document.getElementById(sectionId)
@@ -154,8 +167,6 @@ function App() {
     setMobileMenuOpen(false)
   }
 
-
-  // Certificate Slider Functions
   const nextCert = () => {
     setActiveCertIndex(prev => (prev + 1) % t.certificates.items.length)
   }
@@ -164,18 +175,13 @@ function App() {
     setActiveCertIndex(prev => prev === 0 ? t.certificates.items.length - 1 : prev - 1)
   }
 
-  // Auto slide certificate every 5 seconds
   useEffect(() => {
     certAutoSlideRef.current = setInterval(nextCert, 5000)
     return () => clearInterval(certAutoSlideRef.current)
   }, [t.certificates.items.length])
 
   const getProfileImage = () => {
-    switch (currentLang) {
-      case 'ar': return 'img_web/picturear.png'
-      case 'jp': return 'img_web/picture.png'
-      default: return 'img_web/picture_original.png'
-    }
+    return 'img_web/umar-stand.png'
   }
 
   if (isLoading) {
@@ -187,282 +193,374 @@ function App() {
   }
 
   return (
-    <>
-      {devOverlayVisible && (
-        <div id="development-overlay">
-          <div className="development-notice">
-            <p>This website is under development!</p>
-            <button id="close-notice" onClick={() => setDevOverlayVisible(false)}>
-              Got it!
-            </button>
-          </div>
-        </div>
-      )}
+    <Router>
+      <Routes>
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/styleguide" element={<StyleGuide />} />
+        <Route path="/" element={
+          <>
+            <header className={isScrolled ? 'header-scrolled' : ''}>
+              <nav>
+                <button
+                  className={`mobile-menu-toggle ${mobileMenuOpen ? 'active' : ''}`}
+                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                >
+                  <span className="hamburger-line"></span>
+                  <span className="hamburger-line"></span>
+                  <span className="hamburger-line"></span>
+                </button>
 
-      {/* Header */}
-      <header className={isScrolled ? 'header-scrolled' : ''}>
-        <nav>
-          <div className="nav-left">
-            <span className="logo-text">
-              Personal Web
-            </span>
-          </div>
+                <ul className={`nav-right ${mobileMenuOpen ? 'active' : ''}`}>
+                  <li><a href="#about" onClick={(e) => scrollToSection(e, 'about')}>About</a></li>
+                  <li><a href="#skills" onClick={(e) => scrollToSection(e, 'skills')}>{t.nav.skills}</a></li>
+                  <li><a href="#certificates" onClick={(e) => scrollToSection(e, 'certificates')}>{t.nav.certificates}</a></li>
+                  <li><a href="#projects" onClick={(e) => scrollToSection(e, 'projects')}>{t.nav.projects}</a></li>
+                  <li><a href="#experience" onClick={(e) => scrollToSection(e, 'experience')}>Experience</a></li>
+                  <li><Link to="/contact">{t.nav.contact}</Link></li>
+                </ul>
+              </nav>
+            </header>
 
-          <button
-            className={`mobile-menu-toggle ${mobileMenuOpen ? 'active' : ''}`}
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            <span className="hamburger-line"></span>
-            <span className="hamburger-line"></span>
-            <span className="hamburger-line"></span>
-          </button>
+            <main>
 
-          <ul className={`nav-right ${mobileMenuOpen ? 'active' : ''}`}>
-            <li>
-              <a href="#about" onClick={(e) => scrollToSection(e, 'about')}>
-                {t.nav.about}
-              </a>
-            </li>
-            <li>
-              <a href="#skills" onClick={(e) => scrollToSection(e, 'skills')}>
-                {t.nav.skills}
-              </a>
-            </li>
-            <li>
-              <a href="#certificates" onClick={(e) => scrollToSection(e, 'certificates')}>
-                {t.nav.certificates}
-              </a>
-            </li>
-            <li>
-              <a href="#projects" onClick={(e) => scrollToSection(e, 'projects')}>
-                {t.nav.projects}
-              </a>
-            </li>
-            <li>
-              <a href="#contact" onClick={(e) => scrollToSection(e, 'contact')}>
-                {t.nav.contact}
-              </a>
-            </li>
-            <li className="dropdown">
-              <button className="language-btn">
-                <i className="fas fa-globe"></i>
-              </button>
-              <ul className="dropdown-menu">
-                <li><a href="#" onClick={(e) => { e.preventDefault(); handleLanguageChange('en') }}>🇬🇧 English</a></li>
-                <li><a href="#" onClick={(e) => { e.preventDefault(); handleLanguageChange('jp') }}>🇯🇵 日本語</a></li>
-                <li><a href="#" onClick={(e) => { e.preventDefault(); handleLanguageChange('ar') }}>🇸🇦 العربية</a></li>
-                <li><a href="#" onClick={(e) => { e.preventDefault(); handleLanguageChange('id') }}>🇮🇩 Indonesia</a></li>
-                <li><a href="#" onClick={(e) => { e.preventDefault(); handleLanguageChange('mg') }}>🇮🇩 Padang</a></li>
-              </ul>
-            </li>
-          </ul>
-        </nav>
-      </header>
+              {/* 1. HERO SECTION - TYPOGRAPHY DISPLAY */}
+              <section id="hero" className="typography-section hero-section">
+                <div className="typography-container">
+                  <p className="typography-caption animate-in delay-1">Hello, saya adalah</p>
+                  <h1 className="typography-display animate-in delay-2">Umar Fauzan <span className="text-gradient">Irvan</span></h1>
+                  <p className="typography-lead animate-in delay-3">Full Stack Developer & <strong>Game Developer</strong> yang senang membangun sesuatu yang berfungsi dengan baik dan terlihat cantik.</p>
 
-      <main>
-        {/* About Section */}
-        <section id="about" className="section" ref={aboutSectionRef}>
-          <div className="about-wrapper">
-            <div className="banner" onClick={() => setIsFlipped(!isFlipped)} style={{ cursor: 'pointer' }}>
-              <p>Clik to Flip</p>
-              <div className={`flip-card ${isFlipped ? 'flipped' : ''}`}>
-                <div className="flip-card-inner">
-                  <div className="flip-card-front">
-                    <img src={getProfileImage()} alt="Profile" className="profile-img" />
+                  <div style={{ gap: '5px' }} className="hero-buttons animate-in delay-4">
+                    <a href="#projects" onClick={(e) => scrollToSection(e, 'projects')} className="btn btn-primary-first">
+                      Lihat Projects
+                    </a>
+                    <Link to="/contact" className="btn btn-secondary-first">
+                      Contact Me
+                    </Link>
                   </div>
-                  <div className="flip-card-back">
-                    <div className="back-content">
-                      <a href="https://uwebly.com" target="_blank" rel="noreferrer">Uwebly.com</a>                    </div>
+                </div>
+              </section>
+
+              {/* 2. ABOUT SECTION */}
+              <section id="about" className="typography-section" ref={aboutSectionRef}>
+                <div className="typography-container">
+                  <div className="about-wrapper">
+                      <img src={getProfileImage()} alt="Profile" className="profile-img" />
+                    <div className="about-content">
+                      <h2 className="typography-h1">Tentang Saya</h2>
+                      {t.about.description.map((paragraph, index) => (
+                        <p key={index} className="typography-body about-text" dangerouslySetInnerHTML={{ __html: paragraph }} />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* 3. SKILLS SECTION */}
+              <section id="skills" className="typography-section dark-section" ref={skillsSectionRef}>
+                <div className="typography-container">
+                  <h2 className="typography-h1 light-text">Keahlian</h2>
+                  <div className="typography-spacer-l"></div>
+
+                  <div className="skills-layout">
+                    <div className="skills-grid">
+                      {t.skills.categories.map((category, catIndex) => (
+                        <div key={catIndex} className="skill-category">
+                          <h3 className="typography-h3 light-text">{category.name}</h3>
+                          <div className="typography-spacer-s"></div>
+                          <div className="skills-subgrid">
+                            {[...category.skills].map((skill, skillIndex) => (
+                              <div key={skillIndex} className="skill-card">
+                                <span className="typography-display-small">
+                                  {skillsAnimated && displayCounts[skill.name] !== undefined ? displayCounts[skill.name] : skill.progress}%
+                                </span>
+                                <p className="typography-small">{skill.name}</p>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="skills-icons-bento">
+                      <div className="skill-icon-card large"><i className="fab fa-react"></i></div>
+                      <div className="skill-icon-card"><i className="fab fa-html5"></i></div>
+                      <div className="skill-icon-card"><i className="fab fa-css3-alt"></i></div>
+                      <div className="skill-icon-card"><i className="fab fa-node-js"></i></div>
+                      <div className="skill-icon-card medium"><i className="fab fa-unity"></i></div>
+                      <div className="skill-icon-card"><i className="fab fa-figma"></i></div>
+                      <div className="skill-icon-card"><i className="fab fa-git-alt"></i></div>
+                      <div className="skill-icon-card"><i className="fas fa-palette"></i></div>
+                      <div className="skill-icon-card"><i className="fab fa-python"></i></div>
+                      <div className="skill-icon-card"><i className="fab fa-js-square"></i></div>
+                      <div className="skill-icon-card"><i className="fab fa-vuejs"></i></div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* 4. CERTIFICATES SECTION */}
+              <section id="certificates" className="typography-section" ref={certsSectionRef}>          <div className="typography-container">
+                <h2 className="typography-h1">Sertifikat</h2>
+                <div className="typography-spacer-l"></div>
+
+                <div className="certificates-slider">
+                  <div className="certificates-carousel-3d">
+                    <div className="certificate-slide prev-slide">
+                      <img
+                        src={t.certificates.items[(activeCertIndex - 1 + t.certificates.items.length) % t.certificates.items.length].image}
+                        alt="Previous"
+                        className="certificate-image"
+                      />
+                    </div>
+
+                    <div className="certificate-slide active-slide">
+                      <img
+                        src={t.certificates.items[activeCertIndex].image}
+                        alt={t.certificates.items[activeCertIndex].name}
+                        className="certificate-image"
+                      />
+                    </div>
+
+                    <div className="certificate-slide next-slide">
+                      <img
+                        src={t.certificates.items[(activeCertIndex + 1) % t.certificates.items.length].image}
+                        alt="Next"
+                        className="certificate-image"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="typography-spacer-m"></div>
+                  <h3 className="typography-h2">{t.certificates.items[activeCertIndex].name}</h3>
+                  <p className="typography-small">{t.certificates.items[activeCertIndex].date}</p>
+
+                  <div className="typography-spacer-m"></div>
+                  <div className="slider-controls">
+                    <button className="slider-btn prev-btn" onClick={prevCert}>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                      </svg>
+                    </button>
+
+                    <div className="slider-dots">
+                      {t.certificates.items.map((_, index) => (
+                        <span key={index} className={`dot ${index === activeCertIndex ? 'active' : ''}`} onClick={() => setActiveCertIndex(index)}></span>
+                      ))}
+                    </div>
+
+                    <button className="slider-btn next-btn" onClick={nextCert}>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                      </svg>
+                    </button>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="about-container">
-              <h2>{t.about.title}</h2>
-              {t.about.description.map((paragraph, index) => (
-                <p key={index} className="about-text" dangerouslySetInnerHTML={{ __html: paragraph }} />
-              ))}
-            </div>
-          </div>
-        </section>
+              </section>
 
-        {/* Skills Section */}
-        <section id="skills" className="section" ref={skillsSectionRef}>
-          <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-            <img
-              src={skillTitleImages[skillTitleImageIndex]}
-              alt="Skills Title"
-              style={{
-                height: '64px',
-                maxWidth: '100%',
-                display: 'inline-block',
-                cursor: 'pointer',
-                transition: 'transform 0.15s cubic-bezier(0.2, 0.8, 0.2, 1)',
-                transform: skillTitleClicked ? 'scale(0.9)' : 'scale(1)'
-              }}
-onMouseDown={(e) => {
-                e.stopPropagation()
-                e.preventDefault()
-                setSkillTitleClicked(true)
-                setTimeout(() => setSkillTitleClicked(false), 150)
-                setSkillTitleImageIndex(prev => (prev + 1) % skillTitleImages.length)
-              }}
-            />
-          </div>
-          <div className="skills-grid">
-            {t.skills.categories.map((category, catIndex) => (
-              <div key={catIndex} className="skill-category">
-                <h3 className="category-title">{category.name}</h3>
-                <div className="skills-subgrid">
-                  {[...category.skills, ...category.skills].map((skill, skillIndex) => (
-                    <div key={skillIndex} className="skill">
-                      <span className="skill-percentage">
-                        {skillsAnimated && displayCounts[skill.name] !== undefined ? displayCounts[skill.name] : skill.progress}%
-                      </span>
-                      <div className="skill-description">
-                        <p>{skill.description}</p>
-                        <h3 className="skill-name">{skill.name}</h3>
-                      </div>
-                      <img src={skill.icon} alt={skill.name} className="skill-icon" />
-                      <a href={skill.url || 'https://google.com'} target="_blank" rel="noopener noreferrer" className="skill-link" title={`Visit ${skill.name} website`}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              {/* 5. GAME PROJECT SECTION */}
+              <section id="game-project" className="typography-section">
+                <div className="typography-container">
+                  <h2 className="typography-h1">Game Project</h2>
+                  <div className="typography-spacer-m"></div>
+                  <p className="typography-body">{t.gameProject.description}</p>
+                  <div className="typography-spacer-xl"></div>
+                  <div className="typography-display">{t.gameProject.percentage}%</div>
+                  <div className="progress-bar">
+                    <div style={{ width: `${t.gameProject.percentage}%` }}></div>
+                  </div>
+                </div>
+              </section>
+
+              {/* 6. PROJECTS SECTION */}
+              <section id="projects" className="typography-section">
+                <div className="typography-container">
+                  <h2 className="typography-h1">Proyek</h2>
+                  <div className="typography-spacer-l"></div>
+
+            <div className="projects-grid">
+              {t.projects.items.map((project, index) => (
+                <div key={project.id} className="project-card">
+                  <div className="project-info">
+                    <div className="project-header">
+                      <h2>{project.name} <span>for {project.client || 'Personal Project'}</span></h2>
+                      <a href={project.url} target="_blank" rel="noopener noreferrer" className="project-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                           <line x1="7" y1="17" x2="17" y2="7"></line>
                           <polyline points="7 7 17 7 17 17"></polyline>
                         </svg>
                       </a>
                     </div>
-                  ))}
+                    <p className="typography-lead" style={{ opacity: 0.5 }}>{project.description}</p>
+                  </div>
+
+                  <div className="project-mockup">
+                    {index % 2 === 0 ? (
+                      <>
+                        <div className="project-bg-preview">
+                          <img src={project.screenshot || project.image} alt={project.name} />
+                        </div>
+                        
+                        <div className="project-phone">
+                          <div className="phone-glass">
+                            <div className="phone-screen">
+                              <div className="phone-notch"></div>
+                              <img src={project.screenshot || project.image} alt={project.name} className="phone-screenshot" />
+                            </div>
+                          </div>
+                        </div>
+                      </>
+                    ) : (
+                      <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden', padding: '24px' }}>
+                        
+                        {/* Background Bento Cards */}
+                        <div style={{ 
+                          position: 'absolute', 
+                          width: '100%', 
+                          height: '100%',
+                          display: 'grid',
+                          gridTemplateColumns: 'repeat(4, 1fr)',
+                          gridTemplateRows: 'repeat(5, 1fr)',
+                          gap: '8px',
+                          padding: '20px',
+                          opacity: 0.08
+                        }}>
+                          <div style={{ background: '#1a1a2e', borderRadius: '14px', gridColumn: 'span 2', gridRow: 'span 2', padding: '12px' }}>
+                            <div style={{ width: '60%', height: '8px', background: 'white', borderRadius: '4px', marginBottom: '8px' }}></div>
+                            <div style={{ width: '80%', height: '6px', background: 'white', borderRadius: '3px', opacity: 0.3 }}></div>
+                          </div>
+                          <div style={{ background: '#1a1a2e', borderRadius: '12px', gridColumn: 'span 2', padding: '8px' }}>
+                            <div style={{ width: '70%', height: '6px', background: 'white', borderRadius: '3px' }}></div>
+                          </div>
+                          <div style={{ background: '#1a1a2e', borderRadius: '12px', gridRow: 'span 2', padding: '8px' }}>
+                            <div style={{ width: '100%', height: '50%', background: 'white', borderRadius: '6px', opacity: 0.2 }}></div>
+                          </div>
+                          <div style={{ background: '#1a1a2e', borderRadius: '10px', padding: '6px' }}>
+                            <div style={{ width: '100%', height: '100%', borderRadius: '4px', background: 'white', opacity: 0.15 }}></div>
+                          </div>
+                          <div style={{ background: '#1a1a2e', borderRadius: '14px', gridColumn: 'span 2', gridRow: 'span 2', padding: '12px' }}>
+                            <div style={{ width: '40%', height: '12px', background: 'white', borderRadius: '6px', marginBottom: '8px' }}></div>
+                            <div style={{ width: '90%', height: '5px', background: 'white', borderRadius: '2px', opacity: 0.25, marginBottom: '4px' }}></div>
+                            <div style={{ width: '75%', height: '5px', background: 'white', borderRadius: '2px', opacity: 0.15 }}></div>
+                          </div>
+                          <div style={{ background: '#1a1a2e', borderRadius: '10px', padding: '6px' }}>
+                            <div style={{ width: '100%', height: '100%', borderRadius: '4px', background: 'white', opacity: 0.1 }}></div>
+                          </div>
+                          <div style={{ background: '#1a1a2e', borderRadius: '12px', gridColumn: 'span 3', padding: '8px' }}>
+                            <div style={{ width: '50%', height: '6px', background: 'white', borderRadius: '3px' }}></div>
+                          </div>
+                          <div style={{ background: '#1a1a2e', borderRadius: '10px', padding: '6px' }}>
+                            <div style={{ width: '100%', height: '100%', borderRadius: '4px', background: 'white', opacity: 0.08 }}></div>
+                          </div>
+                        </div>
+
+                        {/* Typography Stack */}
+                        {[100, 200, 300, 400, 500, 600, 700].map((weight, i) => (
+                          <h2 
+                            key={weight} 
+                            style={{ 
+                              position: 'absolute',
+                              fontWeight: weight,
+                              opacity: 1 - (i * 0.12),
+                              transform: `translateY(${i * 32}px)`,
+                              fontSize: 'clamp(1.8rem, 4vw, 2.8rem)',
+                              letterSpacing: '-0.03em',
+                              margin: 0,
+                              zIndex: 10 + i
+                            }}
+                          >
+                            Annishofie
+                          </h2>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Certificates Section */}
-        <section id="certificates" className="section">
-          <h2 className="certificates-title">{t.certificates.title}</h2>
-          <div className="certificates-slider">
-            <div className="certificates-carousel-3d">
-              {/* Previous Certificate */}
-              <div className="certificate-slide prev-slide">
-                <img
-                  src={t.certificates.items[(activeCertIndex - 1 + t.certificates.items.length) % t.certificates.items.length].image}
-                  alt="Previous"
-                  className="certificate-image"
-                />
-              </div>
-
-              {/* Active Certificate */}
-              <div className="certificate-slide active-slide">
-                <img
-                  src={t.certificates.items[activeCertIndex].image}
-                  alt={t.certificates.items[activeCertIndex].name}
-                  className="certificate-image"
-                />
-              </div>
-
-              {/* Next Certificate */}
-              <div className="certificate-slide next-slide">
-                <img
-                  src={t.certificates.items[(activeCertIndex + 1) % t.certificates.items.length].image}
-                  alt="Next"
-                  className="certificate-image"
-                />
-              </div>
+              ))}
             </div>
+                </div>
+              </section>
 
-            <div className="certificate-info">
-              <h3>{t.certificates.items[activeCertIndex].name}</h3>
-              <p>{t.certificates.items[activeCertIndex].date}</p>
-            </div>
+              {/* 7. EXPERIENCE SECTION - BENTO GRID */}
+              <section id="experience" className="typography-section">
+                <div className="typography-container">
+                  <h2 className="typography-h1">Pengalaman</h2>
+                  <div className="typography-spacer-l"></div>
 
-            <div className="slider-controls">
-              <button className="slider-btn prev-btn" onClick={prevCert}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <polyline points="15 18 9 12 15 6"></polyline>
-                </svg>
-              </button>
+                  <div className="bento-grid">
+                    <div className="bento-card bento-card-large">
+                      <p className="typography-caption">2024 - Sekarang</p>
+                      <h3 className="typography-h2">Student Developer</h3>
+                      <p className="typography-body">
+                        Mengembangkan aplikasi web dan mobile secara mandiri serta mengerjakan beberapa proyek freelance.
+                      </p>
+                    </div>
 
-              <div className="slider-dots">
-                {t.certificates.items.map((_, index) => (
-                  <span key={index} className={`dot ${index === activeCertIndex ? 'active' : ''}`} onClick={() => setActiveCertIndex(index)}></span>
-                ))}
+                    <div className="bento-card">
+                      <p className="typography-caption">2021 - 2023</p>
+                      <h3 className="typography-h3">Learning Web Development</h3>
+                      <p className="typography-small">
+                        Mempelajari dasar hingga lanjutan pengembangan web dan membangun berbagai proyek latihan.
+                      </p>
+                    </div>
+
+                    <div className="bento-card">
+                      <h3 className="typography-h2">12+</h3>
+                      <p className="typography-body">Proyek dibuat</p>
+                    </div>
+
+                    <div className="bento-card">
+                      <h3 className="typography-h2">3+ Tahun</h3>
+                      <p className="typography-body">Belajar coding</p>
+                    </div>
+
+                    <div className="bento-card">
+                      <h3 className="typography-h2">12+</h3>
+                      <p className="typography-body">Teknologi dipelajari</p>
+                    </div>
+
+                    <div className="bento-card">
+                      <h3 className="typography-h2">100%</h3>
+                      <p className="typography-body">Komitmen menyelesaikan proyek</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* 8. CONTACT SECTION */}
+              <section id="contact" className="typography-section dark-section">
+                <div className="typography-container">
+                  <h2 className="typography-h1 light-text">Hubungi Saya</h2>
+                  <div className="typography-spacer-xl"></div>
+                  <p className="typography-lead light-text">
+                    Email: <strong>{t.contact.email}</strong>
+                  </p>
+                  <p className="typography-lead light-text">
+                    Phone: <strong>{t.contact.phone}</strong>
+                  </p>
+                  <div className="typography-spacer-l"></div>
+                  <div className="contact-icons">
+                    <a href={`mailto:${t.contact.email}`}><i className="fas fa-envelope"></i></a>
+                    <a href={`tel:${t.contact.phone}`}><i className="fas fa-phone"></i></a>
+                    <a href="https://linkedin.com/in/umarfauzan" target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin"></i></a>
+                    <a href="https://instagram.com/umarfauzan" target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram"></i></a>
+                    <a href="https://github.com/umarfauzan11" target="_blank" rel="noopener noreferrer"><i className="fab fa-github"></i></a>
+                  </div>
+                </div>
+              </section>
+
+            </main>
+
+            <footer>
+              <div className="typography-container text-center">
+                <a href="/StyleGuide" className="typography-small">© 2026 Umar Fauzan Irvan. All rights reserved.</a>
               </div>
-
-              <button className="slider-btn next-btn" onClick={nextCert}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-              </button>
-            </div>
-          </div>
-        </section>
-
-        {/* Game Project Section */}
-        <section id="game-project" className="section">
-          <h2>{t.gameProject.title}</h2>
-          <p>{t.gameProject.description}</p>
-          <p className="note">{t.gameProject.note}</p>
-          <div className="percentage">{t.gameProject.percentage}%</div>
-          <div className="progress-bar">
-            <div style={{ width: `${t.gameProject.percentage}%` }}></div>
-          </div>
-        </section>
-
-        {/* Projects Section */}
-        <section id="projects" className="section">
-          <h2>{t.projects.title}</h2>
-          <div className="projects-grid">
-            {t.projects.items.map((project) => (
-              <div key={project.id} className="project">
-                <img src={project.image} alt={project.name} />
-                <h3>{project.name}</h3>
-                <p>{project.description}</p>
-                <a href={project.url} target="_blank" rel="noopener noreferrer" className="btn">
-                  View Project
-                </a>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Contact Section */}
-        <section id="contact" className="section">
-          <h2>{t.contact.title}</h2>
-          <div className="contact-card">
-            <div className="contact-icons">
-              <a href={`mailto:${t.contact.email}`} title="Email">
-                <i className="fas fa-envelope"></i>
-              </a>
-              <a href={`tel:${t.contact.phone}`} title="Phone">
-                <i className="fas fa-phone"></i>
-              </a>
-              <a href="https://linkedin.com/in/umarfauzan" target="_blank" rel="noopener noreferrer" title="LinkedIn">
-                <i className="fab fa-linkedin"></i>
-              </a>
-              <a href="https://instagram.com/umarfauzan" target="_blank" rel="noopener noreferrer" title="Instagram">
-                <i className="fab fa-instagram"></i>
-              </a>
-              <a href="https://github.com/umarfauzan11" target="_blank" rel="noopener noreferrer" title="GitHub">
-                <i className="fab fa-github"></i>
-              </a>
-            </div>
-          </div>
-          <div className="contact-info">
-            <p><strong>Email:</strong> {t.contact.email}</p>
-            <p><strong>Phone:</strong> {t.contact.phone}</p>
-          </div>
-        </section>
-      </main>
-
-      {/* Footer */}
-      <footer>
-        <div className="footer-content">
-          <img src="img_web/footerlogo.png" alt="Logo" className="footer-logo" />
-          <p>{t.footer.text}</p>
-        </div>
-      </footer>
-    </>
+            </footer>
+          </>
+        } />
+      </Routes>
+    </Router>
   )
 }
 
