@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import { content } from './data/content'
 import Contact from './pages/Contact'
 import StyleGuide from './pages/StyleGuide'
+import Navbar from './components/Navbar'
+
 
 function App() {
   const [isLoading, setIsLoading] = useState(true)
@@ -199,30 +201,13 @@ function App() {
         <Route path="/styleguide" element={<StyleGuide />} />
         <Route path="/" element={
           <>
-            <header className={isScrolled ? 'header-scrolled' : ''}>
-              <nav>
-                <button
-                  className={`mobile-menu-toggle ${mobileMenuOpen ? 'active' : ''}`}
-                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                >
-                  <span className="hamburger-line"></span>
-                  <span className="hamburger-line"></span>
-                  <span className="hamburger-line"></span>
-                </button>
-
-                <ul className={`nav-right ${mobileMenuOpen ? 'active' : ''}`}>
-                  <li><a href="#about" onClick={(e) => scrollToSection(e, 'about')}>About</a></li>
-                  <li><a href="#skills" onClick={(e) => scrollToSection(e, 'skills')}>{t.nav.skills}</a></li>
-                  <li><a href="#certificates" onClick={(e) => scrollToSection(e, 'certificates')}>{t.nav.certificates}</a></li>
-                  <li><a href="#projects" onClick={(e) => scrollToSection(e, 'projects')}>{t.nav.projects}</a></li>
-                  <li><a href="#experience" onClick={(e) => scrollToSection(e, 'experience')}>Experience</a></li>
-                  <li><Link to="/contact">{t.nav.contact}</Link></li>
-                </ul>
-              </nav>
-            </header>
-
+            <Navbar
+              isScrolled={isScrolled}
+              mobileMenuOpen={mobileMenuOpen}
+              setMobileMenuOpen={setMobileMenuOpen}
+              scrollToSection={scrollToSection}
+            />
             <main>
-
               {/* 1. HERO SECTION - TYPOGRAPHY DISPLAY */}
               <section id="hero" className="typography-section hero-section">
                 <div className="typography-container">

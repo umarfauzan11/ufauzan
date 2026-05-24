@@ -62,6 +62,7 @@ export const content = {
         { id: 1, name: "JavaScript", date: "September-November 2024", image: "sertifikat/Javascript.png" },
         { id: 2, name: "HTML", date: "2025", image: "sertifikat/HTML.png" },
         { id: 3, name: "HTML & CSS", date: "Agustus 2024", image: "sertifikat/HTML_CSS.png" },
+        { id: 3, name: "HTML & CSS", date: "Mei 2026", image: "sertifikat/Sertifikat_React.png" },
         { id: 4, name: "Workshop Build, Play, Earn", date: "April 2025", image: "sertifikat/Workshop_Buldgame.png" },
         { id: 5, name: "Minecraft Hour Of Code", date: "2022", image: "sertifikat/eyJuYW1lIjoiVW1hciBGYXV6YW4gSXJ2YW4iLCJjb3Vyc2UiOiJtZWVfZXN0YXRlIiwiZG9ub3IiOiJCYWxsbWVyIEdyb3VwIn0.jpg" },
         { id: 6, name: "Hour Of Code", date: "November 2024", image: "sertifikat/eyJuYW1lIjoiVW1hciBGYXV6YW4gSXJ2YW4iLCJjb3Vyc2UiOiJtZWUiLCJkb25vciI6IkFsZnJlZCBMaW4ifQ.jpg" },
@@ -79,7 +80,8 @@ export const content = {
       title: "Proyek Web",
       items: [
         { id: 1, name: "Proyek 1", description: "Startup : SUAH", image: "img_web/Screenshot 2025-09-19 105532.png", url: "https://hellosuah.netlify.app/" },
-        { id: 2, name: "Proyek 2", description: "Official Sleep Wear.", image: "img_web/Screenshot 2025-09-19 105547.png", url: "https://annishofie.netlify.app/" }
+        { id: 2, name: "Proyek 2", description: "Official Sleep Wear.", image: "img_web/Screenshot 2025-09-19 105547.png", url: "https://annishofie.netlify.app/" },
+        { id: 3, name: "Proyek 3", description: "Official Social Media.", image: "", url: "https://uwebly.com" }
       ]
     },
     contact: {

@@ -40,8 +40,8 @@ header {
   top: 24px;
   left: 50%;
   transform: translateX(-50%);
-  width: 90%;
-  max-width: 1140px;
+  width: 90vw;
+  max-width: 1020px;
   z-index: 9999;
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(20px) saturate(180%);
@@ -54,7 +54,7 @@ header {
 
 header.header-scrolled {
   top: 16px;
-  width: 80%;
+  width: 80vw;
   box-shadow: 0 8px 50px rgba(0, 0, 0, 0.15);
   background: rgba(255, 255, 255, 0.85);
 }
@@ -225,7 +225,7 @@ nav {
   opacity: 0.75;
   margin: 0;
   text-decoration: none;
-  color: var(--text-secondary);
+  color: var(--text-color);
 }
 
 .typography-caption {
@@ -839,6 +839,108 @@ nav {
 .mobile-menu-toggle {
   display: none;
 }
+
+/* Navbar icons */
+.nav-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 16px;
+  color: inherit;
+  opacity: 0.75;
+  transition: all 0.2s ease;
+}
+
+.nav-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.nav-right a {
+  padding: 8px 16px;
+}
+
+.nav-text {
+  display: inline-block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: inherit;
+}
+
+
+.nav-right li {
+  list-style: none;
+}
+
+.nav-desktop {
+  display: flex;
+}
+
+/* desktop tampil teks seperti sebelumnya */
+.nav-desktop .nav-icon {
+  display: none;
+}
+
+.nav-mobile {
+  display: none;
+}
+
+
+@media (max-width: 768px) {
+  .nav-desktop {
+    display: none;
+  }
+
+
+  .mobile-menu-toggle {
+    display: flex;
+    gap: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.4);
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hamburger-line {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: rgba(0,0,0,0.6);
+    margin: 2px 0;
+  }
+
+.nav-mobile {
+    display: flex;
+    position: absolute;
+
+    left: 50%;
+    transform: translateX(-50%);
+    top: 64px;
+    background: rgba(255,255,255,0.85);
+    border: 1px solid rgba(255,255,255,0.3);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    padding: 12px;
+    border-radius: 20px;
+    flex-direction: row;
+    gap: 10px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s ease;
+  }
+
+  .nav-mobile.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
 
 .certificate-image {
   width: 100%;
