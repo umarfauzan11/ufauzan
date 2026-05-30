@@ -18,12 +18,16 @@
   --accent-light: var(--color-2);
 }
 
-/* Import Montserrat Font */
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght=100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 /* Reset base typography */
+
+*{
+  font-family: "Inter", sans-serif;
+}
+
 body {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 400;
   line-height: 1.6;
   color: var(--text-primary);
@@ -114,6 +118,9 @@ nav {
   margin: 0 auto;
   padding: 0 0px;
 }
+.typography-container img {
+
+}
 
 .typography-section {
   padding: 120px 0;
@@ -167,7 +174,7 @@ nav {
 /* Font Hierarchy System */
 .typography-display {
   font-size: clamp(3rem, 8vw, 5.5rem);
-  font-weight: 900;
+  font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.03em;
   margin: 0;

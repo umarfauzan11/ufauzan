@@ -211,7 +211,8 @@ function App() {
               {/* 1. HERO SECTION - TYPOGRAPHY DISPLAY */}
               <section id="hero" className="typography-section hero-section">
                 <div className="typography-container">
-                  <p className="typography-caption animate-in delay-1">Hello, saya adalah</p>
+                  <img src="" alt="" />
+                  <p className="typography-caption animate-in delay-1">Halo, saya adalah</p>
                   <h1 className="typography-display animate-in delay-2">Umar Fauzan <span className="text-gradient">Irvan</span></h1>
                   <p className="typography-lead animate-in delay-3">Full Stack Developer & <strong>Game Developer</strong> yang senang membangun sesuatu yang berfungsi dengan baik dan terlihat cantik.</p>
 
