@@ -1,16 +1,39 @@
-# React + Vite
+# Portofolio Website — Umar Fauzan Irvan
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Website portofolio personal milik **Umar Fauzan Irvan**, siswa PPLG yang memiliki fokus dalam pengembangan website dan aplikasi modern. Berpengalaman dalam membangun antarmuka interaktif, responsive web design, hingga pengembangan aplikasi mobile menggunakan teknologi modern.
 
-Currently, two official plugins are available:
+Website ini hadir dengan desain modern, clean, dan interaktif untuk menampilkan project, skill, serta eksplorasi teknologi yang pernah dikerjakan. Tampilan dibuat minimal namun tetap memiliki sentuhan visual yang dinamis agar nyaman dilihat dan profesional.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Selain menampilkan project development, website ini juga menjadi representasi perjalanan belajar dan eksplorasi Umar Fauzan Irvan di dunia software development, mulai dari frontend development hingga mobile app development.
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![JavaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
+![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 
-## Expanding the ESLint configuration
+## Fitur Utama
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Modern & responsive UI
+- Interactive project showcase
+- Smooth animation & transition
+- Mobile-friendly layout
+- Portfolio & tech stack section
+- Fast performance dengan React + Vite
+
+## Tools & Teknologi
+
+- ReactJS
+- JavaScript
+- HTML5 & CSS3
+- Flutter
+- PHP
+- Vite
+
+Website ini dibuat sebagai media personal branding dan showcase skill development Umar Fauzan Irvan dalam membangun aplikasi web maupun mobile menggunakan teknologi modern.
+
+> © Portfolio content belongs to Umar Fauzan Irvan.
