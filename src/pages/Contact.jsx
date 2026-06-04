@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import Navbar from '../components/Navbar'
 
 function Contact() {
 
@@ -106,27 +107,11 @@ function Contact() {
 
   return (
     <>
-      <header className={isScrolled ? 'header-scrolled' : ''}>
-        <nav>
-          <button
-            className={`mobile-menu-toggle ${mobileMenuOpen ? 'active' : ''}`}
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            <span className="hamburger-line"></span>
-            <span className="hamburger-line"></span>
-            <span className="hamburger-line"></span>
-          </button>
-
-          <ul className={`nav-right ${mobileMenuOpen ? 'active' : ''}`}>
-            <li><Link to="/">About</Link></li>
-            <li><Link to="/">Skills</Link></li>
-            <li><Link to="/">Certificates</Link></li>
-            <li><Link to="/">Projects</Link></li>
-            <li><Link to="/">Experience</Link></li>
-            <li><Link to="/">Kontak</Link></li>
-          </ul>
-        </nav>
-      </header>
+      <Navbar
+        isScrolled={isScrolled}
+        mobileMenuOpen={mobileMenuOpen}
+        setMobileMenuOpen={setMobileMenuOpen}
+      />
 
       <div className="contact-page">
         <div className="contact-container">
@@ -177,7 +162,7 @@ function Contact() {
       </div>
 
       <div className='contact-page'>
-        <div style={{ marginTop: '12px'}} className='contact-container'>
+        <div style={{ marginTop: '12px' }} className='contact-container'>
           <div className="social-links">
             <a href="https://github.com/umarfauzan11" target="_blank" rel="noopener noreferrer" className="social-card github">
               <div className="social-content">
@@ -189,7 +174,7 @@ function Contact() {
               </div>
             </a>
 
-            <a href="https://instagram.com/umarfauzan" target="_blank" rel="noopener noreferrer" className="social-card instagram">
+            <a href="https://www.instagram.com/umar_fauzan_irvan/?hl=id" target="_blank" rel="noopener noreferrer" className="social-card instagram">
               <div className="social-content">
                 <div>
                   <h3>@umarfauzan</h3>

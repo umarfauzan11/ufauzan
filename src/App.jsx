@@ -1,10 +1,30 @@
 import { useState, useEffect, useRef } from 'react'
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom'
 import { content } from './data/content'
 import Contact from './pages/Contact'
 import StyleGuide from './pages/StyleGuide'
 import Navbar from './components/Navbar'
+import { lazy } from 'react'  // tambahkan 'lazy' ke existing import
+import CustomCursor from './components/CustomCursor'
+const CertificateShowcase = lazy(() => import('./components/CertificateShowcase'))
+const ProjectCard3D = lazy(() => import('./components/ProjectCard3D'))
 
+function ScrollHandler() {
+  const location = useLocation()
+
+  useEffect(() => {
+    if (location.state?.scrollTo) {
+      setTimeout(() => {
+        const el = document.getElementById(location.state.scrollTo)
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        // Bersihkan state supaya gak trigger ulang
+        window.history.replaceState({}, '')
+      }, 100)
+    }
+  }, [location])
+
+  return null
+}
 
 function App() {
   const [isLoading, setIsLoading] = useState(true)
@@ -196,6 +216,8 @@ function App() {
 
   return (
     <Router>
+      <ScrollHandler />
+      <CustomCursor />
       <Routes>
         <Route path="/contact" element={<Contact />} />
         <Route path="/styleguide" element={<StyleGuide />} />
@@ -209,18 +231,17 @@ function App() {
             />
             <main>
               {/* 1. HERO SECTION - TYPOGRAPHY DISPLAY */}
-              <section id="hero" className="typography-section hero-section">
+              <section id="hero" className="hero-section">
                 <div className="typography-container">
-                  <img src="" alt="" />
-                  <p className="typography-caption animate-in delay-1">Halo, saya adalah</p>
-                  <h1 className="typography-display animate-in delay-2">Umar Fauzan <span className="text-gradient">Irvan</span></h1>
+                  <p className="typography-caption">Halo, saya adalah</p>
+                  <h1 className="typography-displays">Umar Fauzan <span className="text-gradient">Irvan</span></h1>
                   <p className="typography-lead animate-in delay-3">Full Stack Developer & <strong>Game Developer</strong> yang senang membangun sesuatu yang berfungsi dengan baik dan terlihat cantik.</p>
 
                   <div style={{ gap: '5px' }} className="hero-buttons animate-in delay-4">
                     <a href="#projects" onClick={(e) => scrollToSection(e, 'projects')} className="btn btn-primary-first">
                       Lihat Projects
                     </a>
-                    <Link to="/contact" className="btn btn-secondary-first">
+                    <Link to="/contact" className="btn-secondary-first">
                       Contact Me
                     </Link>
                   </div>
@@ -246,6 +267,11 @@ function App() {
               <section id="skills" className="typography-section dark-section" ref={skillsSectionRef}>
                 <div className="typography-container">
                   <h2 className="typography-h1 light-text">Keahlian</h2>
+                  {t.skills.description.map((item, index) => (
+                    <p key={index} className="typography-body about-text">
+                      {item}
+                    </p>
+                  ))}
                   <div className="typography-spacer-l"></div>
 
                   <div className="skills-layout">
@@ -269,96 +295,185 @@ function App() {
                     </div>
 
                     <div className="skills-icons-bento">
-                      <div className="skill-icon-card large"><i className="fab fa-react"></i></div>
-                      <div className="skill-icon-card"><i className="fab fa-html5"></i></div>
-                      <div className="skill-icon-card"><i className="fab fa-css3-alt"></i></div>
-                      <div className="skill-icon-card"><i className="fab fa-node-js"></i></div>
-                      <div className="skill-icon-card medium"><i className="fab fa-unity"></i></div>
-                      <div className="skill-icon-card"><i className="fab fa-figma"></i></div>
-                      <div className="skill-icon-card"><i className="fab fa-git-alt"></i></div>
-                      <div className="skill-icon-card"><i className="fas fa-palette"></i></div>
-                      <div className="skill-icon-card"><i className="fab fa-python"></i></div>
-                      <div className="skill-icon-card"><i className="fab fa-js-square"></i></div>
-                      <div className="skill-icon-card"><i className="fab fa-vuejs"></i></div>
+                      <div className="skill-icon-card large">
+                        <i className="fab fa-react"></i>
+                        <span className="skill-name">React</span>
+                      </div>
+
+                      <div className="skill-icon-card">
+                        <i className="fab fa-html5"></i>
+                        <span className="skill-name">HTML5</span>
+                      </div>
+
+                      <div className="skill-icon-card">
+                        <i className="fab fa-css3-alt"></i>
+                        <span className="skill-name">CSS3</span>
+                      </div>
+
+                      <div className="skill-icon-card">
+                        <i className="fab fa-js-square"></i>
+                        <span className="skill-name">JavaScript</span>
+                      </div>
+
+                      <div className="skill-icon-card medium">
+                        <i className="fab fa-node-js"></i>
+                        <span className="skill-name">Node.js</span>
+                      </div>
+
+                      <div className="skill-icon-card">
+                        <i className="fab fa-vuejs"></i>
+                        <span className="skill-name">Vue.js</span>
+                      </div>
+
+                      <div className="skill-icon-card">
+                        <i className="fab fa-laravel"></i>
+                        <span className="skill-name">Laravel</span>
+                      </div>
+
+                      <div className="skill-icon-card">
+                        <i className="fab fa-php"></i>
+                        <span className="skill-name">PHP</span>
+                      </div>
+
+                      <div className="skill-icon-card large">
+                        <i className="fab fa-python"></i>
+                        <span className="skill-name">Python</span>
+                      </div>
+
+                      <div className="skill-icon-card">
+                        <i className="fab fa-git-alt"></i>
+                        <span className="skill-name">Git</span>
+                      </div>
+
+                      <div className="skill-icon-card">
+                        <i className="fab fa-github"></i>
+                        <span className="skill-name">GitHub</span>
+                      </div>
+
+                      <div className="skill-icon-card">
+                        <i className="fab fa-npm"></i>
+                        <span className="skill-name">NPM</span>
+                      </div>
+
+                      <div className="skill-icon-card">
+                        <i className="fab fa-bootstrap"></i>
+                        <span className="skill-name">Bootstrap</span>
+                      </div>
+
+                      <div className="skill-icon-card">
+                        <i className="fab fa-figma"></i>
+                        <span className="skill-name">Figma</span>
+                      </div>
+
+                      <div className="skill-icon-card">
+                        <i className="fas fa-palette"></i>
+                        <span className="skill-name">UI/UX</span>
+                      </div>
+
+                      <div className="skill-icon-card medium">
+                        <i className="fas fa-database"></i>
+                        <span className="skill-name">Database</span>
+                      </div>
+
+                      <div className="skill-icon-card">
+                        <i className="fas fa-server"></i>
+                        <span className="skill-name">Backend</span>
+                      </div>
+
+                      <div className="skill-icon-card">
+                        <i className="fas fa-code"></i>
+                        <span className="skill-name">Programming</span>
+                      </div>
+
+                      <div className="skill-icon-card">
+                        <i className="fas fa-terminal"></i>
+                        <span className="skill-name">CLI</span>
+                      </div>
+
+                      <div className="skill-icon-card">
+                        <i className="fas fa-layer-group"></i>
+                        <span className="skill-name">Architecture</span>
+                      </div>
+
+                      <div className="skill-icon-card">
+                        <i className="fas fa-mobile-alt"></i>
+                        <span className="skill-name">Responsive</span>
+                      </div>
                     </div>
                   </div>
                 </div>
               </section>
 
               {/* 4. CERTIFICATES SECTION */}
-              <section id="certificates" className="typography-section" ref={certsSectionRef}>          <div className="typography-container">
-                <h2 className="typography-h1">Sertifikat</h2>
-                <div className="typography-spacer-l"></div>
-
-                <div className="certificates-slider">
-                  <div className="certificates-carousel-3d">
-                    <div className="certificate-slide prev-slide">
-                      <img
-                        src={t.certificates.items[(activeCertIndex - 1 + t.certificates.items.length) % t.certificates.items.length].image}
-                        alt="Previous"
-                        className="certificate-image"
-                      />
-                    </div>
-
-                    <div className="certificate-slide active-slide">
-                      <img
-                        src={t.certificates.items[activeCertIndex].image}
-                        alt={t.certificates.items[activeCertIndex].name}
-                        className="certificate-image"
-                      />
-                    </div>
-
-                    <div className="certificate-slide next-slide">
-                      <img
-                        src={t.certificates.items[(activeCertIndex + 1) % t.certificates.items.length].image}
-                        alt="Next"
-                        className="certificate-image"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="typography-spacer-m"></div>
-                  <h3 className="typography-h2">{t.certificates.items[activeCertIndex].name}</h3>
-                  <p className="typography-small">{t.certificates.items[activeCertIndex].date}</p>
-
-                  <div className="typography-spacer-m"></div>
-                  <div className="slider-controls">
-                    <button className="slider-btn prev-btn" onClick={prevCert}>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <polyline points="15 18 9 12 15 6"></polyline>
-                      </svg>
-                    </button>
-
-                    <div className="slider-dots">
-                      {t.certificates.items.map((_, index) => (
-                        <span key={index} className={`dot ${index === activeCertIndex ? 'active' : ''}`} onClick={() => setActiveCertIndex(index)}></span>
-                      ))}
-                    </div>
-
-                    <button className="slider-btn next-btn" onClick={nextCert}>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-              </div>
-              </section>
-
-              {/* 5. GAME PROJECT SECTION */}
-              <section id="game-project" className="typography-section">
+              <section id="certificates" className="typography-section" ref={certsSectionRef}>
                 <div className="typography-container">
-                  <h2 className="typography-h1">Game Project</h2>
-                  <div className="typography-spacer-m"></div>
-                  <p className="typography-body">{t.gameProject.description}</p>
-                  <div className="typography-spacer-xl"></div>
-                  <div className="typography-display">{t.gameProject.percentage}%</div>
-                  <div class="progress-bar">
-                    <div class="progress-fill" style={{ width: '25%' }}></div>
-                  </div>
+                  <h2 className="typography-h1">Sertifikat</h2>
+                  <div className="typography-spacer-l"></div>
 
+                  <CertificateShowcase certificates={t.certificates.items} />
                 </div>
               </section>
+
+              {/* <section id="certificates" className="typography-section" ref={certsSectionRef}>
+                <div className="typography-container">
+                  <h2 className="typography-h1">Sertifikat</h2>
+                  <div className="typography-spacer-l"></div>
+
+                  <div className="certificates-slider">
+                    <div className="certificates-carousel-3d">
+                      <div className="certificate-slide prev-slide">
+                        <img
+                          src={t.certificates.items[(activeCertIndex - 1 + t.certificates.items.length) % t.certificates.items.length].image}
+                          alt="Previous"
+                          className="certificate-image"
+                        />
+                      </div>
+
+                      <div className="certificate-slide active-slide">
+                        <img
+                          src={t.certificates.items[activeCertIndex].image}
+                          alt={t.certificates.items[activeCertIndex].name}
+                          className="certificate-image"
+                        />
+                      </div>
+
+                      <div className="certificate-slide next-slide">
+                        <img
+                          src={t.certificates.items[(activeCertIndex + 1) % t.certificates.items.length].image}
+                          alt="Next"
+                          className="certificate-image"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="typography-spacer-m"></div>
+                    <h3 className="typography-h2">{t.certificates.items[activeCertIndex].name}</h3>
+                    <p className="typography-small">{t.certificates.items[activeCertIndex].date}</p>
+
+                    <div className="typography-spacer-m"></div>
+                    <div className="slider-controls">
+                      <button className="slider-btn prev-btn" onClick={prevCert}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                      </button>
+
+                      <div className="slider-dots">
+                        {t.certificates.items.map((_, index) => (
+                          <span key={index} className={`dot ${index === activeCertIndex ? 'active' : ''}`} onClick={() => setActiveCertIndex(index)}></span>
+                        ))}
+                      </div>
+
+                      <button className="slider-btn next-btn" onClick={nextCert}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </section> */}
+
 
               {/* 6. PROJECTS SECTION */}
               <section id="projects" className="typography-section">
@@ -366,108 +481,11 @@ function App() {
                   <h2 className="typography-h1">Proyek</h2>
                   <div className="typography-spacer-l"></div>
 
-                  <div className="projects-grid">
-                    {t.projects.items.map((project, index) => (
-                      <div key={project.id} className="project-card">
-                        <div className="project-info">
-                          <div className="project-header">
-                            <h2>{project.name} <span>for {project.client || 'Personal Project'}</span></h2>
-                            <a href={project.url} target="_blank" rel="noopener noreferrer" className="project-arrow">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                <line x1="7" y1="17" x2="17" y2="7"></line>
-                                <polyline points="7 7 17 7 17 17"></polyline>
-                              </svg>
-                            </a>
-                          </div>
-                          <p className="typography-lead" style={{ opacity: 0.5 }}>{project.description}</p>
-                        </div>
-
-                        <div className="project-mockup">
-                          {index % 2 === 0 ? (
-                            <>
-                              <div className="project-bg-preview">
-                                <img src={project.screenshot || project.image} alt={project.name} />
-                              </div>
-
-                              <div className="project-phone">
-                                <div className="phone-glass">
-                                  <div className="phone-screen">
-                                    <div className="phone-notch"></div>
-                                    <img src={project.screenshot || project.image} alt={project.name} className="phone-screenshot" />
-                                  </div>
-                                </div>
-                              </div>
-                            </>
-                          ) : (
-                            <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden', padding: '24px' }}>
-
-                              {/* Background Bento Cards */}
-                              <div style={{
-                                position: 'absolute',
-                                width: '100%',
-                                height: '100%',
-                                display: 'grid',
-                                gridTemplateColumns: 'repeat(4, 1fr)',
-                                gridTemplateRows: 'repeat(5, 1fr)',
-                                gap: '8px',
-                                padding: '20px',
-                                opacity: 0.08
-                              }}>
-                                <div style={{ background: '#1a1a2e', borderRadius: '14px', gridColumn: 'span 2', gridRow: 'span 2', padding: '12px' }}>
-                                  <div style={{ width: '60%', height: '8px', background: 'white', borderRadius: '4px', marginBottom: '8px' }}></div>
-                                  <div style={{ width: '80%', height: '6px', background: 'white', borderRadius: '3px', opacity: 0.3 }}></div>
-                                </div>
-                                <div style={{ background: '#1a1a2e', borderRadius: '12px', gridColumn: 'span 2', padding: '8px' }}>
-                                  <div style={{ width: '70%', height: '6px', background: 'white', borderRadius: '3px' }}></div>
-                                </div>
-                                <div style={{ background: '#1a1a2e', borderRadius: '12px', gridRow: 'span 2', padding: '8px' }}>
-                                  <div style={{ width: '100%', height: '50%', background: 'white', borderRadius: '6px', opacity: 0.2 }}></div>
-                                </div>
-                                <div style={{ background: '#1a1a2e', borderRadius: '10px', padding: '6px' }}>
-                                  <div style={{ width: '100%', height: '100%', borderRadius: '4px', background: 'white', opacity: 0.15 }}></div>
-                                </div>
-                                <div style={{ background: '#1a1a2e', borderRadius: '14px', gridColumn: 'span 2', gridRow: 'span 2', padding: '12px' }}>
-                                  <div style={{ width: '40%', height: '12px', background: 'white', borderRadius: '6px', marginBottom: '8px' }}></div>
-                                  <div style={{ width: '90%', height: '5px', background: 'white', borderRadius: '2px', opacity: 0.25, marginBottom: '4px' }}></div>
-                                  <div style={{ width: '75%', height: '5px', background: 'white', borderRadius: '2px', opacity: 0.15 }}></div>
-                                </div>
-                                <div style={{ background: '#1a1a2e', borderRadius: '10px', padding: '6px' }}>
-                                  <div style={{ width: '100%', height: '100%', borderRadius: '4px', background: 'white', opacity: 0.1 }}></div>
-                                </div>
-                                <div style={{ background: '#1a1a2e', borderRadius: '12px', gridColumn: 'span 3', padding: '8px' }}>
-                                  <div style={{ width: '50%', height: '6px', background: 'white', borderRadius: '3px' }}></div>
-                                </div>
-                                <div style={{ background: '#1a1a2e', borderRadius: '10px', padding: '6px' }}>
-                                  <div style={{ width: '100%', height: '100%', borderRadius: '4px', background: 'white', opacity: 0.08 }}></div>
-                                </div>
-                              </div>
-
-                              {/* Typography Stack */}
-                              {[100, 200, 300, 400, 500, 600, 700].map((weight, i) => (
-                                <h2
-                                  key={weight}
-                                  style={{
-                                    position: 'absolute',
-                                    fontWeight: weight,
-                                    opacity: 1 - (i * 0.12),
-                                    transform: `translateY(${i * 32}px)`,
-                                    fontSize: 'clamp(1.8rem, 4vw, 2.8rem)',
-                                    letterSpacing: '-0.03em',
-                                    margin: 0,
-                                    zIndex: 10 + i
-                                  }}
-                                >
-                                  Annishofie
-                                </h2>
-                              ))}
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+                  <ProjectCard3D projects={t.projects.items} />
                 </div>
               </section>
+
+
 
               {/* 7. EXPERIENCE SECTION - BENTO GRID */}
               <section id="experience" className="typography-section">
@@ -480,7 +498,7 @@ function App() {
                       <p className="typography-caption">2024 - Sekarang</p>
                       <h3 className="typography-h2">Student Developer</h3>
                       <p className="typography-body">
-                        Mengembangkan aplikasi web dan mobile secara mandiri serta mengerjakan beberapa proyek freelance.
+                        Mengembangkan aplikasi web dan mobile secara mandiri serta mengerjakan beberapa proyek UMKM.
                       </p>
                     </div>
 
@@ -493,12 +511,12 @@ function App() {
                     </div>
 
                     <div className="bento-card">
-                      <h3 className="typography-h2">12+</h3>
+                      <h3 className="typography-h2">23+</h3>
                       <p className="typography-body">Proyek dibuat</p>
                     </div>
 
                     <div className="bento-card">
-                      <h3 className="typography-h2">3+ Tahun</h3>
+                      <h3 className="typography-h2">2+ Tahun</h3>
                       <p className="typography-body">Belajar coding</p>
                     </div>
 
@@ -508,7 +526,7 @@ function App() {
                     </div>
 
                     <div className="bento-card">
-                      <h3 className="typography-h2">100%</h3>
+                      <h3 className="typography-h2">99%</h3>
                       <p className="typography-body">Komitmen menyelesaikan proyek</p>
                     </div>
                   </div>

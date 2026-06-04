@@ -11,13 +11,16 @@ export const content = {
     about: {
       title: "Tentang Saya",
       description: [
-        "Halo! Saya <strong>Umar Fauzan</strong>, seorang siswa di SMK Wikrama Bogor dengan ketertarikan pada teknologi, pemrograman game, dan desain web.",
-        "Saat ini saya sedang menempuh pendidikan kejuruan dengan tujuan menjadi <strong>Front-End Developer</strong> dan <strong>UI/UX Designer</strong>. Semoga tercapai!",
-        "Lahir tahun 2008, saya memiliki hobi bermain game, membuat game, dan olahraga favorit saya adalah badminton."
+        "Halo! Saya <strong>Umar Fauzan Irvan</strong>, seorang siswa di SMK Wikrama Bogor dengan ketertarikan pada teknologi, pemrograman website, mobile, game dan desain web.",
+        "Saat ini saya sedang menempuh pendidikan kejuruan dengan tujuan menjadi <strong>Fullstack Developer</strong> dan <strong>UI/UX Designer</strong>. Semoga tercapai!",
+        "Lahir tahun 2008, saya memiliki banyak sekali hobi, dari bermain game, membuat game, membaca buku, serta saya senang sekali olahraga badminton."
       ]
     },
     skills: {
       title: "Keahlian",
+      description: [
+        "Beberapa Skill yang saya tunjukan di bawah berasal dari Belajar mandiri dan Pemebelajaran langsung dari Sekolah"
+      ],
       categories: [
         {
           name: "Desain",
@@ -33,17 +36,18 @@ export const content = {
         {
           name: "Pemrograman",
           skills: [
-            { name: "HTML", icon: "icons/html.png", progress: 95, description: "Bahasa markup untuk menstrukturkan konten web." },
+            { name: "HTML", icon: "icons/html.png", progress: 97, description: "Bahasa markup untuk menstrukturkan konten web." },
             { name: "CSS", icon: "icons/css.png", progress: 90, description: "Bahasa styling untuk mendesain layout dan tampilan web." },
-            { name: "JavaScript", icon: "icons/js.png", progress: 85, description: "Bahasa pemrograman untuk pengembangan web interaktif." },
-            { name: "ReactJS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg", progress: 40, description: "Library JavaScript untuk membangun antarmuka pengguna." },
+            { name: "JavaScript", icon: "icons/js.png", progress: 80, description: "Bahasa pemrograman untuk pengembangan web interaktif." },
+            { name: "ReactJS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg", progress: 60, description: "Library JavaScript untuk membangun antarmuka pengguna." },
             { name: "Bootstrap", icon: "icons/bootstrap.png", progress: 80, description: "Framework CSS untuk desain web responsif dan mobile-first." },
-            { name: "Laravel", icon: "icons/laravel.png", progress: 70, description: "Framework PHP untuk membangun aplikasi web yang handal." },
-            { name: "PHP", icon: "icons/php.png", progress: 75, description: "Bahasa scripting server-side untuk pengembangan web dinamis." },
+            { name: "Laravel", icon: "icons/laravel.png", progress: 50, description: "Framework PHP untuk membangun aplikasi web yang handal." },
+            { name: "PHP", icon: "icons/php.png", progress: 70, description: "Bahasa scripting server-side untuk pengembangan web dinamis." },
             { name: "Kotlin", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg", progress: 10, description: "Bahasa pemrograman modern untuk pengembangan Android." },
-            { name: "Flutter", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg", progress: 5, description: "UI toolkit untuk membangun aplikasi yang dikompilasi secara native." },
+            { name: "Flutter", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg", progress: 35, description: "UI toolkit untuk membangun aplikasi yang dikompilasi secara native." },
             { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg", progress: 15, description: "Database NoSQL untuk menyimpan dan mengelola data berorientasi dokumen." },
-            { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg", progress: 20, description: "Sistem database relasional open-source yang canggih." }
+            { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg", progress: 20, description: "Sistem database relasional open-source yang canggih." },
+            { name: "Postman", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg", progress: 45, description: "Platform perangkat lunak yang digunakan oleh developer untuk mendesain, membangun, menguji, dan mendokumentasikan API." }
           ]
         },
         {
@@ -82,7 +86,12 @@ export const content = {
       items: [
         { id: 1, name: "Proyek 1", description: "Startup : SUAH", image: "img_web/Screenshot 2025-09-19 105532.png", url: "https://hellosuah.netlify.app/" },
         { id: 2, name: "Proyek 2", description: "Official Sleep Wear.", image: "img_web/Screenshot 2025-09-19 105547.png", url: "https://annishofie.netlify.app/" },
-        { id: 3, name: "Proyek 3", description: "Official Social Media.", image: "", url: "https://uwebly.com" }
+        { id: 3, name: "Proyek 3", description: "Official Social Media.", image: "img_web/uweblysc.png", url: "https://uwebly.com" },
+        { id: 4, name: "Proyek 4", description: "Flutter App.", image: "img_web/kedaimasamba.png", url: "https://github.com/umarfauzan11/Kedai-Mas-Amba" },
+        { id: 5, name: "Proyek 5", description: "Portofolio Web v1.", image: "img_web/portofoliov1.png", url: "https://umarfauzanweb.netlify.app/" },
+        { id: 6, name: "Proyek 6", description: "Portofolio Web Luffi.J.", image: "img_web/portofolioluffi.png", url: "https://https://luffi-isya-januar.netlify.app/" },
+        { id: 7, name: "Proyek 7", description: "BzQuizz", image: "img_web/bzquizz.png", url: "https://bzquizz.vercel.app/" },
+        { id: 8, name: "Proyek 8", description: "PHP Perbandingan", image: "img_web/phpperbandingan.png", url: "https://github.com/umarfauzan11/perbandingan-angka" },
       ]
     },
     contact: {
