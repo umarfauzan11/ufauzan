@@ -76,7 +76,7 @@ export default function ProjectCard3D({ projects }) {
 
         {currentProject.url && (
           <a href={currentProject.url} target="_blank" rel="noopener noreferrer" className="btn project-showcase-link">
-            Check
+            View Link
           </a>
         )}
       </div>

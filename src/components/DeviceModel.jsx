@@ -89,7 +89,7 @@ function MacBookModel({ screenshotUrl, shakeDir, transitionId }) {
 
                 {/* Screen display — shows screenshot */}
                 <mesh position={[0, 0.05, 0.05]}>
-                    <planeGeometry args={[4.9, 2.9]} />
+                    <planeGeometry args={[5.0, 3.05]} />
                     <meshBasicMaterial ref={materialRef} map={texture} transparent opacity={0} />
                 </mesh>
 

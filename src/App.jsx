@@ -252,7 +252,9 @@ function App() {
               <section id="about" className="typography-section" ref={aboutSectionRef}>
                 <div className="typography-container">
                   <div className="about-wrapper">
-                    <img src={getProfileImage()} alt="Profile" className="profile-img" />
+                    <div className="profile-wrapper">
+                      <img src={getProfileImage()} alt="Profile" className="profile-img" />
+                    </div>
                     <div className="about-content">
                       <h2 className="typography-h1">Tentang Saya</h2>
                       {t.about.description.map((paragraph, index) => (
@@ -262,6 +264,7 @@ function App() {
                   </div>
                 </div>
               </section>
+
 
               {/* 3. SKILLS SECTION */}
               <section id="skills" className="typography-section dark-section" ref={skillsSectionRef}>
@@ -409,7 +412,6 @@ function App() {
                 <div className="typography-container">
                   <h2 className="typography-h1">Sertifikat</h2>
                   <div className="typography-spacer-l"></div>
-
                   <CertificateShowcase certificates={t.certificates.items} />
                 </div>
               </section>
@@ -477,7 +479,7 @@ function App() {
 
               {/* 6. PROJECTS SECTION */}
               <section id="projects" className="typography-section">
-                <div className="typography-container">
+                <div className="typography-container effect">
                   <h2 className="typography-h1">Proyek</h2>
                   <div className="typography-spacer-l"></div>
 
@@ -534,29 +536,36 @@ function App() {
               </section>
 
               {/* 8. CONTACT SECTION */}
+              {/* 8. CONTACT SECTION */}
               <section id="contact" className="typography-section dark-section">
                 <div className="typography-container">
-                  <h2 className="typography-h1 light-text">Hubungi Saya</h2>
-                  <div className="typography-spacer-xl"></div>
-                  <p className="typography-lead light-text">
-                    Email: <strong>{t.contact.email}</strong>
-                  </p>
-                  <p className="typography-lead light-text">
-                    Phone: <strong>{t.contact.phone}</strong>
-                  </p>
-                  <div className="typography-spacer-l"></div>
-                  <div className="contact-icons">
-                    <a href={`mailto:${t.contact.email}`}><i className="fas fa-envelope"></i></a>
-                    <a href={`tel:${t.contact.phone}`}><i className="fas fa-phone"></i></a>
-                    <a href="https://linkedin.com/in/umarfauzan" target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin"></i></a>
-                    <a href="https://instagram.com/umarfauzan" target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram"></i></a>
-                    <a href="https://github.com/umarfauzan11" target="_blank" rel="noopener noreferrer"><i className="fab fa-github"></i></a>
+                  <div className="contact-layout">
+                    <div className="contact-left">
+                      <h2 className="typography-h1 light-text">Hubungi Saya</h2>
+                      <div className="typography-spacer-xl"></div>
+                      <p className="typography-lead light-text">
+                        Email: <strong>{t.contact.email}</strong>
+                      </p>
+                      <p className="typography-lead light-text">
+                        Phone: <strong>{t.contact.phone}</strong>
+                      </p>
+                      <div className="typography-spacer-l"></div>
+                      <div className="contact-icons">
+                        <a href={`mailto:${t.contact.email}`}><i className="fas fa-envelope"></i></a>
+                        <a href={`tel:${t.contact.phone}`}><i className="fas fa-phone"></i></a>
+                        <a href="https://linkedin.com/in/umarfauzan" target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin"></i></a>
+                        <a href="https://instagram.com/umarfauzan" target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram"></i></a>
+                        <a href="https://github.com/umarfauzan11" target="_blank" rel="noopener noreferrer"><i className="fab fa-github"></i></a>
+                      </div>
+                    </div>
+
+                    <div className="contact-right">
+                      <img src="/public/img_web/block.gif" alt="Mario" className="contact-mascot" />
+                    </div>
                   </div>
                 </div>
               </section>
-
             </main>
-
             <footer>
               <div className="typography-container text-center">
                 <a href="/StyleGuide" className="typography-small">© 2026 Umar Fauzan Irvan. All rights reserved.</a>

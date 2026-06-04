@@ -26,10 +26,10 @@ export const content = {
           name: "Desain",
           skills: [
             { name: "Adobe Premiere", icon: "icons/adobe-premiere.png", progress: 80, description: "Software editing video profesional untuk membuat konten berkualitas tinggi." },
-            { name: "Capcut", icon: "icons/capcut.png", progress: 85, description: "Aplikasi editing video mobile dengan fitur canggih untuk edit cepat." },
+            { name: "Capcut", icon: "icons/capcut.png", progress: 95, description: "Aplikasi editing video mobile dengan fitur canggih untuk edit cepat." },
             { name: "Canva", icon: "icons/canva.webp", progress: 90, description: "Alat desain grafis untuk membuat visual dan presentasi yang menakjubkan." },
             { name: "Figma", icon: "icons/figma.png", progress: 85, description: "Alat desain antarmuka kolaboratif untuk prototyping UI/UX." },
-            { name: "Filmora", icon: "icons/filmora.png", progress: 75, description: "Editor video yang mudah digunakan dengan efek dan template canggih." },
+            { name: "Filmora", icon: "icons/filmora.png", progress: 90, description: "Editor video yang mudah digunakan dengan efek dan template canggih." },
             { name: "Ibis Paint", icon: "https://play-lh.googleusercontent.com/s8moWkCF9wE-ynJgNyq8k3uhhVlbQLdphqTYJWkrsLRxkFZxx9FvykHmwXYmTl_h0l8", progress: 25, description: "Aplikasi lukisan digital populer untuk membuat ilustrasi dan karya seni." }
           ]
         },
@@ -89,7 +89,7 @@ export const content = {
         { id: 3, name: "Proyek 3", description: "Official Social Media.", image: "img_web/uweblysc.png", url: "https://uwebly.com" },
         { id: 4, name: "Proyek 4", description: "Flutter App.", image: "img_web/kedaimasamba.png", url: "https://github.com/umarfauzan11/Kedai-Mas-Amba" },
         { id: 5, name: "Proyek 5", description: "Portofolio Web v1.", image: "img_web/portofoliov1.png", url: "https://umarfauzanweb.netlify.app/" },
-        { id: 6, name: "Proyek 6", description: "Portofolio Web Luffi.J.", image: "img_web/portofolioluffi.png", url: "https://https://luffi-isya-januar.netlify.app/" },
+        { id: 6, name: "Proyek 6", description: "Portofolio Web Luffi.J.", image: "img_web/portofolioluffi.png", url: "https://luffi-isya-januar.netlify.app/" },
         { id: 7, name: "Proyek 7", description: "BzQuizz", image: "img_web/bzquizz.png", url: "https://bzquizz.vercel.app/" },
         { id: 8, name: "Proyek 8", description: "PHP Perbandingan", image: "img_web/phpperbandingan.png", url: "https://github.com/umarfauzan11/perbandingan-angka" },
       ]

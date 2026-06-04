@@ -6,7 +6,9 @@
 /* ✅ COLOR PALETTE STANDAR SEKARANG FULL DIPAKAI */
 :root {
   --color-1: #727d73;
+  --color-1tr: #727d73a9;
   --color-2: #aab99a;
+  --color-2tr: rgba(250, 255, 245, 0.315);
   --color-3: #d0ddd0;
   --color-4: #f0f0d7;
   --color-5: rgba(255, 255, 255, 0.08);
@@ -59,7 +61,7 @@ header {
   top: 24px;
   left: 50%;
   transform: translateX(-50%);
-  width: 90vw;
+  width: 40vw;
   max-width: 1020px;
   z-index: 9999;
   background: rgba(255, 255, 255, 0.7);
@@ -68,8 +70,7 @@ header {
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.3);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  animation: navSlideDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: navSlideDown 9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 header.header-scrolled {
@@ -136,6 +137,82 @@ nav {
   margin: 0 auto;
   padding: 0 0px;
 }
+
+.effect::before {
+  content: "";
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(
+    circle,
+    rgba(114, 125, 115, 0.438),
+    rgba(114, 125, 115, 0.178) 50%,
+    transparent
+  );
+  border-radius: 50%;
+  animation: randomPath1 16s ease-in-out infinite;
+  z-index: -1;
+}
+
+.effect::after {
+  content: "";
+  position: absolute;
+  bottom: 10%;
+  right: 10%;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(
+    circle,
+    rgba(170, 185, 154, 0.274),
+    rgba(170, 185, 154, 0.06) 50%,
+    transparent
+  );
+  border-radius: 50%;
+  animation: randomPath2 20s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes randomPath1 {
+  0% {
+    transform: translate(0, 0);
+  }
+  20% {
+    transform: translate(80px, -60px);
+  }
+  40% {
+    transform: translate(-40px, 40px);
+  }
+  60% {
+    transform: translate(60px, 80px);
+  }
+  80% {
+    transform: translate(-60px, -40px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes randomPath2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-70px, 50px);
+  }
+  50% {
+    transform: translate(50px, -70px);
+  }
+  75% {
+    transform: translate(-50px, -50px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
 /* .typography-container img {
 
 } */
@@ -168,7 +245,13 @@ nav {
 
 .typography-section.dark-section {
   border-radius: 25px;
-  background: var(--color-1);
+  background: linear-gradient(
+    180deg,
+    rgba(114, 125, 115, 0) 0%,
+    rgba(114, 125, 115, 1) 22%,
+    rgba(114, 125, 115, 1) 85%,
+    rgba(114, 125, 115, 0) 100%
+  );
   color: white;
 }
 
@@ -437,6 +520,50 @@ nav {
   width: 29rem;
   margin-top: -3rem;
   margin-left: -5rem;
+}
+
+/* === Profile + 3D Floor === */
+.about-wrapper {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 64px;
+  align-items: start;
+  margin-top: 48px;
+  perspective: 800px;
+}
+
+.profile-img {
+  width: 29rem;
+  margin-top: -3rem;
+  margin-left: -5rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* === Profile 3D Floor via ::before === */
+.profile-wrapper {
+  position: relative;
+}
+
+.profile-wrapper::before {
+  content: "";
+  position: absolute;
+  bottom: 10px;
+  left: -6.2rem;
+  width: 82rem;
+  height: 320px;
+  background: linear-gradient(
+    180deg,
+    rgba(114, 125, 115, 0) 0%,
+    rgba(114, 125, 115, 0.52) 22%,
+    rgba(114, 125, 115, 0.81) 100%,
+    rgba(114, 125, 115, 0) 100%
+  );
+  transform: perspective(800px) rotateX(55deg);
+  transform-origin: bottom center;
+  border-radius: 0 8px 8px 0;
+  z-index: 0;
+  pointer-events: none;
 }
 
 /* Skills Layout 2 Kolom */
@@ -822,7 +949,7 @@ nav {
 }
 
 .bento-card {
-  background: white;
+  background: var(--color-2tr);
   border-radius: 20px;
   padding: 28px;
   border: 1px solid #e5e7eb;
@@ -830,7 +957,7 @@ nav {
 }
 
 .bento-card:hover {
-  border: 11px solid var(--color-1);
+  border: 11px solid var(--color-2tr);
 }
 
 .bento-card-large {
@@ -1232,7 +1359,7 @@ nav {
 .contact-container {
   max-width: 600px;
   margin: 120px auto; /* kasih jarak atas bawah */
-  padding: 24px 24px;
+  padding: 10px;
   background-color: rgba(255, 255, 255, 0.85);
 
   border-radius: 24px; /* sudut halus */
@@ -1267,7 +1394,7 @@ nav {
 
 .chat-bubble {
   max-width: 80%;
-  padding: 16px 20px;
+  padding: 10px 20px;
   border-radius: 20px;
   animation: bubbleSlide 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   opacity: 0;
@@ -1332,6 +1459,8 @@ nav {
   gap: 12px;
   align-items: end;
   padding: 16px 0;
+  padding-bottom: 0;
+  padding-top: 0;
 }
 
 .chat-form input {
@@ -1354,15 +1483,18 @@ nav {
 
 .chat-form input:focus {
   outline: none;
-  border-color: #3b82f6;
+  border-color: var(--color-1);
   box-shadow: 0 2px 8px rgba(59, 130, 246, 0.1);
 }
 
 .chat-form button {
-  width: 50px;
-  height: 50px;
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  background: #3b82f6;
+  background: var(--color-1);
   color: white;
   border: none;
   cursor: pointer;
@@ -1371,12 +1503,11 @@ nav {
   justify-content: center;
   transition: all 0.2s ease;
   padding: 0;
-  min-width: 50px;
 }
 
 .chat-form button:hover {
   transform: scale(1.05);
-  background: #2563eb;
+  opacity: 0.7;
 }
 
 .chat-form button:active {
@@ -1386,7 +1517,8 @@ nav {
 .chat-form button svg {
   width: 20px;
   height: 20px;
-  transform: rotate(-45deg);
+  margin-top: 0.2rem;
+  transform: rotate(-25deg);
 }
 
 @keyframes bubbleSlide {
@@ -1410,7 +1542,7 @@ nav {
 /* Social Cards */
 .social-links {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 3fr 3fr;
   gap: 16px;
 }
 
@@ -1790,7 +1922,6 @@ footer {
   }
 }
 
-
 .custom-cursor {
   position: fixed;
   width: 12px;
@@ -1800,10 +1931,11 @@ footer {
   pointer-events: none;
   z-index: 99999;
   transform: translate(-50%, -50%);
-  transition: width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
-              height 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
-              background 0.2s ease,
-              opacity 0.2s ease;
+  transition:
+    width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    height 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background 0.2s ease,
+    opacity 0.2s ease;
   mix-blend-mode: difference;
   display: flex;
   align-items: center;
@@ -1862,9 +1994,10 @@ footer {
   pointer-events: none;
   z-index: 99998;
   transform: translate(-50%, -50%);
-  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-              height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-              opacity 0.3s ease;
+  transition:
+    width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.3s ease;
   opacity: 0.5;
 }
 
@@ -1897,12 +2030,9 @@ footer {
     opacity: 1;
   }
   100% {
-    transform: translate(-50%, -50%) 
-               translate(
-                 calc(cos(var(--angle)) * 60px),
-                 calc(sin(var(--angle)) * 60px)
-               ) 
-               scale(0);
+    transform: translate(-50%, -50%)
+      translate(calc(cos(var(--angle)) * 60px), calc(sin(var(--angle)) * 60px))
+      scale(0);
     opacity: 0;
   }
 }
@@ -1914,8 +2044,14 @@ footer {
   .cursor-particle {
     display: none !important;
   }
-  
-  body, a, button, input, textarea, .project-card, .btn {
+
+  body,
+  a,
+  button,
+  input,
+  textarea,
+  .project-card,
+  .btn {
     cursor: auto !important;
   }
 }
@@ -1927,4 +2063,54 @@ footer {
   will-change: transform;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+}
+
+/* === Contact Layout === */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.contact-left {
+  /* text already styled */
+}
+
+.contact-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-mascot {
+  width: 280px;
+  height: auto;
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
+  animation: mascotBounce 2s ease-in-out infinite;
+}
+
+@keyframes mascotBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-layout {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .contact-icons {
+    justify-content: center;
+  }
+
+  .contact-mascot {
+    width: 180px;
+  }
 }

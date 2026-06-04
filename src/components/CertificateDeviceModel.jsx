@@ -65,7 +65,7 @@ function TabletModel({ screenshotUrl, shakeDir, transitionId }) {
 
             {/* Screen display — landscape ratio */}
             <mesh position={[0, 0, 0.09]}>
-                <planeGeometry args={[5.3, 3.2]} />
+                <planeGeometry args={[5.3, 3.3]} />
                 <meshBasicMaterial ref={materialRef} map={texture} transparent opacity={0} />
             </mesh>
 
@@ -107,7 +107,7 @@ export default function CertificateDeviceModel({ screenshotUrl, shakeDir, transi
         <div style={{ width: '100%', height: '100%' }}>
             <CanvasErrorBoundary>
                 <Canvas
-                    camera={{ position: [0, 0.5, 5.5], fov: 35 }}
+                    camera={{ position: [0, 0.5, 5.6], fov: 35 }}
                     dpr={[1, 1.2]}
                     gl={{ antialias: true, alpha: true }}
                     style={{ background: 'transparent' }}
