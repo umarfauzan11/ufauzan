@@ -1506,11 +1506,9 @@ background: linear-gradient(180deg,rgba(114, 125, 115, 0) 0%, rgba(114, 125, 115
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s ease;
-  padding: 0;
 }
 
-.chat-form button:hover {
+/* .chat-form button:hover {
   transform: scale(1.05);
   opacity: 0.7;
 }
@@ -1519,11 +1517,11 @@ background: linear-gradient(180deg,rgba(114, 125, 115, 0) 0%, rgba(114, 125, 115
   transform: scale(0.95);
 }
 
-.chat-form button svg {
+.chat-form a svg {
   width: 20px;
   height: 20px;
   transform: rotate(-25deg);
-}
+} */
 
 @keyframes bubbleSlide {
   to {
