@@ -78,7 +78,7 @@ function App() {
       // Animate sections when they enter viewport
       document.querySelectorAll('.typography-section').forEach(section => {
         const rect = section.getBoundingClientRect()
-        const isInView = rect.top < window.innerHeight * 0.75
+        const isInView = rect.top < window.innerHeight * 0.5
 
         if (isInView) {
           section.classList.add('in-view')

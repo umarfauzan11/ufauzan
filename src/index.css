@@ -1461,7 +1461,7 @@ background: linear-gradient(180deg,rgba(114, 125, 115, 0) 0%, rgba(114, 125, 115
 
 .chat-form {
   display: flex;
-  gap: 12px;
+  gap: 9px;
   align-items: end;
   padding: 16px 0;
   padding-bottom: 0;
@@ -1471,14 +1471,14 @@ background: linear-gradient(180deg,rgba(114, 125, 115, 0) 0%, rgba(114, 125, 115
 .chat-form input {
   flex: 1;
   padding: 0px 20px;
-  border: 2px solid #949494;
+  border: 1px solid #949494;
   border-radius: 24px;
   font-family: inherit;
   font-size: 1rem;
   transition: all 0.2s ease;
   background: white;
   max-height: 120px;
-  min-height: 50px;
+  min-height: 45px;
   resize: none;
 }
 
@@ -1493,9 +1493,8 @@ background: linear-gradient(180deg,rgba(114, 125, 115, 0) 0%, rgba(114, 125, 115
 }
 
 .chat-form a {
-  position: sticky;
-  right: 1rem !important;
-  bottom: 1rem !important;
+  /* right: 1rem !important;
+  bottom: 1rem !important; */
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -1506,6 +1505,7 @@ background: linear-gradient(180deg,rgba(114, 125, 115, 0) 0%, rgba(114, 125, 115
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 0.2rem;
 }
 
 /* .chat-form button:hover {
@@ -1516,12 +1516,12 @@ background: linear-gradient(180deg,rgba(114, 125, 115, 0) 0%, rgba(114, 125, 115
 .chat-form button:active {
   transform: scale(0.95);
 }
+  */
 
 .chat-form a svg {
-  width: 20px;
-  height: 20px;
-  transform: rotate(-25deg);
-} */
+  width: 15px;
+  height: 15px;
+}
 
 @keyframes bubbleSlide {
   to {
@@ -1547,6 +1547,10 @@ background: linear-gradient(180deg,rgba(114, 125, 115, 0) 0%, rgba(114, 125, 115
   grid-template-columns: 3fr 3fr;
   gap: 16px;
 }
+.social-links1 {
+  display: grid;
+  gap: 16px;
+}
 
 .social-card {
   background: white;
@@ -1559,9 +1563,29 @@ background: linear-gradient(180deg,rgba(114, 125, 115, 0) 0%, rgba(114, 125, 115
   border: 1px solid #e5e7eb;
   transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
+.social-cards {
+  background: white;
+  border-radius: 16px;
+  padding: 20px 24px;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  height: 50px; /* height awal */
+  transition: height 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.social-cards:hover {
+  height: 220px; /* height saat hover */
+}
 
 .social-card.github::before {
   background: #1a1a2e;
+}
+
+.social-cards.youtube::before {
+  background: #ee3709;
 }
 
 .social-card.instagram::before {
@@ -1585,8 +1609,22 @@ background: linear-gradient(180deg,rgba(114, 125, 115, 0) 0%, rgba(114, 125, 115
   transition: all 2s cubic-bezier(0.16, 1, 0.3, 1);
   clip-path: ellipse(100% 100% 100% 100%);
 }
+.social-cards::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  transition: all 2s cubic-bezier(0.16, 1, 0.3, 1);
+  clip-path: ellipse(100% 100% 100% 100%);
+}
 
 .social-card:hover::before {
+  width: 300%;
+  height: 300%;
+}
+.social-cards:hover::before {
   width: 300%;
   height: 300%;
 }
@@ -1597,6 +1635,9 @@ background: linear-gradient(180deg,rgba(114, 125, 115, 0) 0%, rgba(114, 125, 115
 } */
 
 .social-card:hover * {
+  color: white !important;
+}
+.social-cards:hover * {
   color: white !important;
 }
 
@@ -1629,6 +1670,9 @@ background: linear-gradient(180deg,rgba(114, 125, 115, 0) 0%, rgba(114, 125, 115
 
 @media (max-width: 480px) {
   .social-links {
+    grid-template-columns: 1fr;
+  }
+  .social-links1 {
     grid-template-columns: 1fr;
   }
 }

@@ -203,6 +203,21 @@ function Contact() {
           </div>
         </div>
       </div>
+      <div className='contact-page'>
+        <div style={{ marginTop: '12px' }} className='contact-container'>
+          <div className="social-links1">
+            <a href="https://youtube.com/@UFauzan" target="_blank" rel="noopener noreferrer" className="social-cards youtube">
+              <div className="social-content">
+                <div>
+                  <h3>UFauzan</h3>
+                  <p>Contact me</p>
+                </div>
+                <i className="fab fa-youtube"></i>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
     </>
   )
 }
