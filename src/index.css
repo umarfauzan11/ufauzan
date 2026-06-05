@@ -1493,7 +1493,7 @@ background: linear-gradient(180deg,rgba(114, 125, 115, 0) 0%, rgba(114, 125, 115
 }
 
 .chat-form a {
-  position: fixed;
+  position: sticky;
   right: 1rem !important;
   bottom: 1rem !important;
   width: 40px;
