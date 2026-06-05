@@ -18,19 +18,16 @@ function Contact() {
     { id: 'message', text: 'Bagus, ada pesan apa yang mau kamu sampaikan?', placeholder: 'Tulis pesan kamu disini...' },
   ]
 
-  // ✅ 1. Scroll ke atas saat masuk page
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
 
-  // ✅ 2. Auto scroll ke bawah setiap kali messages berubah
   useEffect(() => {
     if (chatEndRef.current) {
       chatEndRef.current.scrollIntoView({ behavior: 'smooth' })
     }
   }, [messages, isTyping])
 
-  // ✅ 3. Scroll listener
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50)
     window.addEventListener('scroll', handleScroll)
@@ -51,7 +48,6 @@ function Contact() {
     }, 800)
   }
 
-  // ✅ 4. Buka Gmail compose
   const openGmail = (name, email, message) => {
     const to = 'usahlanbuiness@gmail.com'
     const subject = encodeURIComponent(`Pesan dari ${name} (${email})`)
@@ -84,7 +80,6 @@ function Contact() {
 
     setFormData({ ...formData, [currentField]: '' })
 
-    // ✅ Easter egg detect nama sendiri
     if (currentField === 'name') {
       const inputName = value.toLowerCase().trim()
       const detectNames = ['usahlan', 'umar fauzan', 'umar', 'ufauzan', 'ufauzan11', 'fauzan', 'umar fauzan irvan']
@@ -111,7 +106,6 @@ function Contact() {
         addBotMessage(chatQuestions[nextStep].text)
       }, 400)
     } else {
-      // ✅ Chat selesai → tampilkan pesan + buka Gmail
       const allData = { ...formData, [currentField]: value }
       setTimeout(() => {
         addBotMessage('Terima kasih! Pesan kamu sudah terkirim ✅')
@@ -154,8 +148,6 @@ function Contact() {
                   </div>
                 </div>
               )}
-
-              {/* ✅ Anchor untuk auto-scroll */}
               <div ref={chatEndRef} />
             </div>
 
@@ -169,12 +161,18 @@ function Contact() {
                   autoFocus
                   required
                 />
-                <button type="submit">
+                <a
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleSubmit(e);
+                  }}
+                  style={{ cursor: 'pointer' }}
+                >
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <line x1="22" y1="2" x2="11" y2="13"></line>
                     <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
                   </svg>
-                </button>
+                </a>
               </form>
             )}
           </div>

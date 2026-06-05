@@ -1492,7 +1492,7 @@ background: linear-gradient(180deg,rgba(114, 125, 115, 0) 0%, rgba(114, 125, 115
   box-shadow: 0 2px 8px rgba(59, 130, 246, 0.1);
 }
 
-.chat-form button {
+.chat-form a {
   position: fixed;
   right: 1rem !important;
   bottom: 1rem !important;
@@ -1522,7 +1522,6 @@ background: linear-gradient(180deg,rgba(114, 125, 115, 0) 0%, rgba(114, 125, 115
 .chat-form button svg {
   width: 20px;
   height: 20px;
-  margin-top: 0.2rem;
   transform: rotate(-25deg);
 }
 
