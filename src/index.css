@@ -61,7 +61,7 @@ header {
   top: 24px;
   left: 50%;
   transform: translateX(-50%);
-  width: 40vw;
+  width: 55vw;
   max-width: 1020px;
   z-index: 9999;
   background: rgba(255, 255, 255, 0.7);
@@ -252,6 +252,11 @@ nav {
     rgba(114, 125, 115, 1) 85%,
     rgba(114, 125, 115, 0) 100%
   );
+  color: white;
+}
+.typography-section.dark-section1 {
+  border-radius: 25px;
+background: linear-gradient(180deg,rgba(114, 125, 115, 0) 0%, rgba(114, 125, 115, 0.73) 31%, rgba(114, 125, 115, 1) 100%);
   color: white;
 }
 
@@ -1488,9 +1493,9 @@ nav {
 }
 
 .chat-form button {
-  position: absolute;
-  right: 1rem;
-  bottom: 1rem;
+  position: fixed;
+  right: 1rem !important;
+  bottom: 1rem !important;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -1581,7 +1586,7 @@ nav {
   width: 0;
   height: 0;
   transition: all 2s cubic-bezier(0.16, 1, 0.3, 1);
-  clip-path: polygon(100% 0, 0 0, 100% 100%);
+  clip-path: ellipse(100% 100% 100% 100%);
 }
 
 .social-card:hover::before {
@@ -1589,10 +1594,10 @@ nav {
   height: 300%;
 }
 
-.social-card:hover {
+/* .social-card:hover {
   transform: translateY(-4px);
   border-color: #1a1a2e;
-}
+} */
 
 .social-card:hover * {
   color: white !important;

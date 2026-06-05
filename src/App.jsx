@@ -536,8 +536,7 @@ function App() {
               </section>
 
               {/* 8. CONTACT SECTION */}
-              {/* 8. CONTACT SECTION */}
-              <section id="contact" className="typography-section dark-section">
+              <section id="contact" className="typography-section dark-section1">
                 <div className="typography-container">
                   <div className="contact-layout">
                     <div className="contact-left">
@@ -560,7 +559,7 @@ function App() {
                     </div>
 
                     <div className="contact-right">
-                      <img src="/public/img_web/block.gif" alt="Mario" className="contact-mascot" />
+                      <img src="/img_web/block.gif" alt="Mario" className="contact-mascot" />
                     </div>
                   </div>
                 </div>
