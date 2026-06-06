@@ -72,7 +72,8 @@ export const content = {
         { id: 5, name: "Minecraft Hour Of Code", date: "2022", image: "sertifikat/eyJuYW1lIjoiVW1hciBGYXV6YW4gSXJ2YW4iLCJjb3Vyc2UiOiJtZWVfZXN0YXRlIiwiZG9ub3IiOiJCYWxsbWVyIEdyb3VwIn0.jpg" },
         { id: 6, name: "Hour Of Code", date: "November 2024", image: "sertifikat/eyJuYW1lIjoiVW1hciBGYXV6YW4gSXJ2YW4iLCJjb3Vyc2UiOiJtZWUiLCJkb25vciI6IkFsZnJlZCBMaW4ifQ.jpg" },
         { id: 7, name: "Linux Fundamental", date: "2025", image: "sertifikat/Fundamental_Linux.png" },
-        { id: 8, name: "Bahasa Jepang", date: "2025", image: "sertifikat/certificates japanese.png" }
+        { id: 8, name: "Bahasa Jepang", date: "2025", image: "sertifikat/certificates japanese.png" },
+        { id: 9, name: "Flutter Fundamental", date: "2025", image: "sertifikat/Sertifikat_Flutter.png" }
       ]
     },
     gameProject: {
@@ -82,10 +83,10 @@ export const content = {
       percentage: 25
     },
     projects: {
-      title: "Proyek Web",
+      title: "Projek",
       items: [
         { id: 1, name: "Proyek 1", description: "Startup : SUAH", image: "img_web/Screenshot 2025-09-19 105532.png", url: "https://hellosuah.netlify.app/" },
-        { id: 2, name: "Proyek 2", description: "Official Sleep Wear.", image: "img_web/Screenshot 2025-09-19 105547.png", url: "https://annishofie.netlify.app/" },
+        { id: 2, name: "Proyek 2", description: "Official Sleep Wear Website.", image: "img_web/Screenshot 2025-09-19 105547.png", url: "https://annishofie.netlify.app/" },
         { id: 3, name: "Proyek 3", description: "Official Social Media.", image: "img_web/uweblysc.png", url: "https://uwebly.com" },
         { id: 4, name: "Proyek 4", description: "Flutter App.", image: "img_web/kedaimasamba.png", url: "https://github.com/umarfauzan11/Kedai-Mas-Amba" },
         { id: 5, name: "Proyek 5", description: "Portofolio Web v1.", image: "img_web/portofoliov1.png", url: "https://umarfauzanweb.netlify.app/" },
