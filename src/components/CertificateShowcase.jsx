@@ -1,49 +1,80 @@
-import { useState, useRef, useEffect, lazy, Suspense } from 'react'
-
-const CertificateDeviceModel = lazy(() => import('./CertificateDeviceModel'))
+import { useState, useEffect, useRef } from 'react'
+import CertificateModal from './CertificateModal'
 
 export default function CertificateShowcase({ certificates }) {
   const [activeIndex, setActiveIndex] = useState(0)
-  const [transitionId, setTransitionId] = useState(0)
-  const [isVisible, setIsVisible] = useState(false)
-  const [shakeDir, setShakeDir] = useState(null)
-  const sectionRef = useRef(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setIsVisible(true) },
-      { threshold: 0.2 }
-    )
-    if (sectionRef.current) observer.observe(sectionRef.current)
-    return () => observer.disconnect()
-  }, [])
-
-  const currentCert = certificates[activeIndex]
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isPaused, setIsPaused] = useState(false)
+  const autoSlideRef = useRef(null)
 
   const nextCert = () => {
     setActiveIndex((prev) => (prev + 1) % certificates.length)
-    setShakeDir('next')
-    setTransitionId((prev) => prev + 1)
   }
 
   const prevCert = () => {
     setActiveIndex((prev) => (prev - 1 + certificates.length) % certificates.length)
-    setShakeDir('prev')
-    setTransitionId((prev) => prev + 1)
   }
 
+  const openModal = () => {
+    setIsModalOpen(true)
+  }
+
+  const closeModal = () => {
+    setIsModalOpen(false)
+  }
+
+  const handleModalNext = () => {
+    setActiveIndex((prev) => (prev + 1) % certificates.length)
+  }
+
+  const handleModalPrev = () => {
+    setActiveIndex((prev) => (prev - 1 + certificates.length) % certificates.length)
+  }
+
+  // Auto-slide
+  useEffect(() => {
+    if (!isPaused && !isModalOpen) {
+      autoSlideRef.current = setInterval(nextCert, 5000)
+    }
+    return () => {
+      if (autoSlideRef.current) clearInterval(autoSlideRef.current)
+    }
+  }, [isPaused, isModalOpen, certificates.length])
+
+  const currentCert = certificates[activeIndex]
+  const prevCertData = certificates[(activeIndex - 1 + certificates.length) % certificates.length]
+  const nextCertData = certificates[(activeIndex + 1) % certificates.length]
+
   return (
-    <div className="cert-showcase" ref={sectionRef}>
+    <div 
+      className="cert-showcase"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
       <div className="cert-showcase-viewport">
-        {isVisible && (
-          <Suspense fallback={<div className="project-card-3d-loading"><div className="loading-spinner small"></div></div>}>
-            <CertificateDeviceModel
-              screenshotUrl={`/${currentCert.image}`}
-              shakeDir={shakeDir}
-              transitionId={transitionId}
-            />
-          </Suspense>
-        )}
+        <div className="certificate-slide prev-slide" style={{ transform: 'translate(-50%, -50%) translateX(-65%) translateZ(-200px) rotateY(15deg) scale(0.75)' }} onClick={() => setActiveIndex((activeIndex - 1 + certificates.length) % certificates.length)}>
+          <img
+            src={`/${prevCertData.image}`}
+            alt={prevCertData.name}
+            className="certificate-image"
+          />
+        </div>
+
+        <div className="certificate-slide active-slide" style={{ transform: 'translate(-50%, -50%) translateZ(0) rotateY(0deg) scale(1)' }} onClick={openModal}>
+          <img
+            src={`/${currentCert.image}`}
+            alt={currentCert.name}
+            className="certificate-image"
+          />
+        </div>
+
+        <div className="certificate-slide next-slide" style={{ transform: 'translate(-50%, -50%) translateX(65%) translateZ(-200px) rotateY(-15deg) scale(0.75)' }} onClick={() => setActiveIndex((activeIndex + 1) % certificates.length)}>
+          <img
+            src={`/${nextCertData.image}`}
+            alt={nextCertData.name}
+            className="certificate-image"
+          />
+        </div>
       </div>
 
       <div className="cert-showcase-info">
@@ -68,6 +99,17 @@ export default function CertificateShowcase({ certificates }) {
         <h3 className="typography-h2 project-showcase-title">{currentCert.name}</h3>
         <p className="typography-body project-showcase-desc">{currentCert.date}</p>
       </div>
+
+      {isModalOpen && (
+        <CertificateModal
+          certificate={currentCert}
+          onClose={closeModal}
+          onNext={handleModalNext}
+          onPrev={handleModalPrev}
+          hasNext={certificates.length > 1}
+          hasPrev={certificates.length > 1}
+        />
+      )}
     </div>
   )
 }

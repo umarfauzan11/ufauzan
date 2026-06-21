@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import "../src/styles/3d.css";
+
 /* ================================================
     ✅ SISTEM TIPOGRAFI HIERARKI BARU
     Semua styling berbasis font weight dan ukuran
@@ -20,9 +23,6 @@
   --accent: var(--color-1);
   --accent-light: var(--color-2);
 }
-
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
-@import "../src/styles/3d.css";
 
 * {
   font-family: "Inter", sans-serif;

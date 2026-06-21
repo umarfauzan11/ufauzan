@@ -4,10 +4,9 @@ import { content } from './data/content'
 import Contact from './pages/Contact'
 import StyleGuide from './pages/StyleGuide'
 import Navbar from './components/Navbar'
-import { lazy } from 'react'  // tambahkan 'lazy' ke existing import
 import CustomCursor from './components/CustomCursor'
-const CertificateShowcase = lazy(() => import('./components/CertificateShowcase'))
-const ProjectCard3D = lazy(() => import('./components/ProjectCard3D'))
+import CertificateShowcase from './components/CertificateShowcase'
+import ProjectCard3D from './components/ProjectCard3D'
 
 function ScrollHandler() {
   const location = useLocation()
@@ -35,8 +34,6 @@ function App() {
   const skillsSectionRef = useRef(null)
   const aboutSectionRef = useRef(null)
   const [aboutAnimated, setAboutAnimated] = useState(false)
-  const [activeCertIndex, setActiveCertIndex] = useState(0)
-  const certAutoSlideRef = useRef(null)
 
   const t = content.id
 
@@ -189,18 +186,6 @@ function App() {
     setMobileMenuOpen(false)
   }
 
-  const nextCert = () => {
-    setActiveCertIndex(prev => (prev + 1) % t.certificates.items.length)
-  }
-
-  const prevCert = () => {
-    setActiveCertIndex(prev => prev === 0 ? t.certificates.items.length - 1 : prev - 1)
-  }
-
-  useEffect(() => {
-    certAutoSlideRef.current = setInterval(nextCert, 5000)
-    return () => clearInterval(certAutoSlideRef.current)
-  }, [t.certificates.items.length])
 
   const getProfileImage = () => {
     return 'img_web/umar-stand.png'
