@@ -1,19 +1,13 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Yeseva+One:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 @import "../src/styles/3d.css";
 
-/* ================================================
-    ✅ SISTEM TIPOGRAFI HIERARKI BARU
-    Semua styling berbasis font weight dan ukuran
-    ================================================ */
-
-/* ✅ COLOR PALETTE STANDAR SEKARANG FULL DIPAKAI */
 :root {
-  --color-1: #727d73;
-  --color-1tr: #727d73a9;
-  --color-2: #aab99a;
-  --color-2tr: rgba(250, 255, 245, 0.315);
-  --color-3: #d0ddd0;
-  --color-4: #f0f0d7;
+  --color-1: #7B6892;
+  --color-1tr: #a56ce6;
+  --color-2: #e2a9f1;
+  --color-2tr: rgba(187, 124, 224, 0.315);
+  --color-3: #d5d0dd;
+  --color-4: #fff;
   --color-5: rgba(255, 255, 255, 0.08);
 
   --text-primary: #333333;
@@ -25,7 +19,7 @@
 }
 
 * {
-  font-family: "Inter", sans-serif;
+  font-family: "Yeseva One", sans-serif;
 }
 
 body {
@@ -33,7 +27,7 @@ body {
   overflow-x: hidden !important;
   width: 100%;
   position: relative;
-  font-family: "Inter", sans-serif;
+  font-family: "Yeseva One", sans-serif;
   font-weight: 400;
   line-height: 1.6;
   color: var(--text-primary);
@@ -65,10 +59,10 @@ header {
   max-width: 1020px;
   z-index: 9999;
   background: rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--color-1);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   animation: navSlideDown 9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
@@ -248,15 +242,19 @@ nav {
   background: linear-gradient(
     180deg,
     rgba(114, 125, 115, 0) 0%,
-    rgba(114, 125, 115, 1) 22%,
-    rgba(114, 125, 115, 1) 85%,
+    var(--color-1) 22%,
+    var(--color-1) 85%,
     rgba(114, 125, 115, 0) 100%
   );
   color: white;
 }
 .typography-section.dark-section1 {
   border-radius: 25px;
-background: linear-gradient(180deg,rgba(114, 125, 115, 0) 0%, rgba(114, 125, 115, 0.73) 31%, rgba(114, 125, 115, 1) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(114, 125, 115, 0) 0%, 
+    var(--color-1) 31%, 
+    var(--color-1) 100%);
   color: white;
 }
 
@@ -288,10 +286,15 @@ background: linear-gradient(180deg,rgba(114, 125, 115, 0) 0%, rgba(114, 125, 115
 
 .typography-displays {
   font-size: clamp(3rem, 8vw, 5.5rem);
+  color: white;
+  background: linear-gradient(0deg,rgba(40, 8, 77, 0.55) 100%, rgba(40, 8, 77, 0) 100%);
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.03em;
   margin: 0;
+  padding: 9px 12px;
+  border-radius: 15px;
+  width: 75%;
 }
 
 .typography-display-small {
@@ -411,11 +414,10 @@ background: linear-gradient(180deg,rgba(114, 125, 115, 0) 0%, rgba(114, 125, 115
   transition-delay: 0.8s;
 }
 
-/* ✅ GRADIENT TEKS SUDAH DIGANTI DENGAN PALETTE BARU */
 .text-gradient {
   display: inline-block;
   font-size: 6rem;
-  background: linear-gradient(135deg, var(--color-1), var(--color-2));
+  background: white;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
@@ -423,7 +425,7 @@ background: linear-gradient(180deg,rgba(114, 125, 115, 0) 0%, rgba(114, 125, 115
 }
 
 .text-gradient:hover {
-  font-size: 8rem;
+  font-size: 6.3rem;
 }
 
 .hero-buttons {
@@ -560,13 +562,13 @@ background: linear-gradient(180deg,rgba(114, 125, 115, 0) 0%, rgba(114, 125, 115
   background: linear-gradient(
     180deg,
     rgba(114, 125, 115, 0) 0%,
-    rgba(114, 125, 115, 0.52) 22%,
-    rgba(114, 125, 115, 0.81) 100%,
-    rgba(114, 125, 115, 0) 100%
+    var(--color-1) 22%,
+    var(--color-1) 100%,
+    var(--color-1) 100%
   );
   transform: perspective(800px) rotateX(55deg);
   transform-origin: bottom center;
-  border-radius: 0 8px 8px 0;
+  border-radius: 38px;
   z-index: 0;
   pointer-events: none;
 }
@@ -1365,7 +1367,7 @@ background: linear-gradient(180deg,rgba(114, 125, 115, 0) 0%, rgba(114, 125, 115
   max-width: 600px;
   margin: 120px auto; /* kasih jarak atas bawah */
   padding: 10px;
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: var(--color-3);
 
   border-radius: 24px; /* sudut halus */
 
