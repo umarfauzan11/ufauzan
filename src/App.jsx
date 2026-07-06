@@ -7,6 +7,7 @@ import Navbar from './components/Navbar'
 import CustomCursor from './components/CustomCursor'
 import CertificateShowcase from './components/CertificateShowcase'
 import ProjectCard3D from './components/ProjectCard3D'
+import Lenis from 'lenis'
 
 function ScrollHandler() {
   const location = useLocation()
@@ -40,6 +41,11 @@ function App() {
   // Tambahkan state dan ref baru
   const [certsAnimated, setCertsAnimated] = useState(false)
   const certsSectionRef = useRef(null)
+
+  // Initialize Lenis
+  const lenis = new Lenis({
+    autoRaf: true,
+  });
 
   // Tambahkan useEffect baru untuk animate certificates
   useEffect(() => {
@@ -226,6 +232,23 @@ function App() {
                     <a href="#projects" onClick={(e) => scrollToSection(e, 'projects')} className="btn btn-primary-first">
                       Lihat Projects
                     </a>
+                    <a
+                      href="https://www.linkedin.com/in/umar-fauzan-irvan-24139b363"
+                      className="btn btn-primary-second"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        style={{ marginRight: "8px" }}
+                      >
+                        <path d="M4.98 3.5C4.98 4.60457 4.08457 5.5 2.98 5.5C1.87543 5.5.98 4.60457.98 3.5C.98 2.39543 1.87543 1.5 2.98 1.5C4.08457 1.5 4.98 2.39543 4.98 3.5ZM5 8H1V22H5V8ZM8 8H11.83V9.91H11.88C12.41 8.9 13.71 7.83 15.65 7.83C19.68 7.83 20.42 10.48 20.42 13.92V22H16.42V14.97C16.42 13.29 16.39 11.13 14.08 11.13C11.73 11.13 11.37 12.96 11.37 14.85V22H7.37V8H8Z" />
+                      </svg>
+
+                      See My LinkedIn
+                    </a>
                     <Link to="/contact" className="btn-secondary-first">
                       Contact Me
                     </Link>
@@ -247,6 +270,7 @@ function App() {
                       ))}
                     </div>
                   </div>
+                  <button className='download-cv'>Download CV</button>
                 </div>
               </section>
 
@@ -537,7 +561,7 @@ function App() {
                       <div className="contact-icons">
                         <a href={`mailto:${t.contact.email}`}><i className="fas fa-envelope"></i></a>
                         <a href={`tel:${t.contact.phone}`}><i className="fas fa-phone"></i></a>
-                        <a href="https://linkedin.com/in/umarfauzan" target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin"></i></a>
+                        <a href="https://www.linkedin.com/in/umar-fauzan-irvan-24139b363" target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin"></i></a>
                         <a href="https://instagram.com/umarfauzan" target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram"></i></a>
                         <a href="https://github.com/umarfauzan11" target="_blank" rel="noopener noreferrer"><i className="fab fa-github"></i></a>
                       </div>

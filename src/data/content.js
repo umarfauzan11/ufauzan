@@ -11,9 +11,9 @@ export const content = {
     about: {
       title: "Tentang Saya",
       description: [
-        "Halo! Saya <strong>Umar Fauzan Irvan</strong>, seorang siswa di SMK Wikrama Bogor dengan ketertarikan pada teknologi, pemrograman website, mobile, game dan desain web.",
-        "Saat ini saya sedang menempuh pendidikan kejuruan dengan tujuan menjadi <strong>Fullstack Developer</strong> dan <strong>UI/UX Designer</strong>. Semoga tercapai!",
-        "Lahir tahun 2008, saya memiliki banyak sekali hobi, dari bermain game, membuat game, membaca buku, serta saya senang sekali olahraga badminton."
+        "Halo! Saya <strong>Umar Fauzan Irvan</strong>, siswa <strong>SMK Wikrama Bogor</strong> yang memiliki minat di bidang pengembangan web, aplikasi mobile, UI/UX, dan game.",
+        "Saat ini saya terus mengembangkan kemampuan sebagai <strong>Fullstack Developer</strong> dengan membangun berbagai proyek dan mempelajari teknologi baru.",
+        "Di luar belajar, saya senang membuat game, membaca buku, dan bermain badminton."
       ]
     },
     skills: {

@@ -483,6 +483,16 @@ nav {
   text-decoration: none;
   transition: width 0.3s ease;
 }
+.btn-primary-second {
+  padding: 16px 32px;
+  width: 10%;
+  background: var(--color-2) !important;
+  color: white;
+  border-radius: 0px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: width 0.3s ease;
+}
 
 .btn-primary-first:hover {
   width: 25%;
@@ -505,6 +515,34 @@ nav {
   width: 15%;
   background: var(--color-2);
   color: white;
+}
+
+.download-cv {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  background-color: var(--color-1);
+  padding: 15px 18px;
+  font-size: 1.3rem;
+  color: white;
+  border-radius: 15px;
+  border: 2px solid var(--color-4);
+  transition: all 0.3s ease;
+}
+.download-cv:hover {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  background-color: var(--color-4);
+  padding: 15px 18px;
+  font-size: 1.3rem;
+  color: var(--color-1);
+  border-radius: 15px;
+  border: 2px solid var(--color-1);
 }
 
 /* About Section */
