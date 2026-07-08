@@ -270,7 +270,9 @@ function App() {
                       ))}
                     </div>
                   </div>
-                  <button className='download-cv'>Download CV</button>
+                  <a style={{textDecoration: 'none'}} href="/public/CV_UMAR_FAUZAN_IRVAN.pdf" download="CV_Umar_Fauzan_Irvan">
+                    <button className='download-cv'>Download CV</button>
+                  </a>
                 </div>
               </section>
 
