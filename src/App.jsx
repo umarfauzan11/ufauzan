@@ -228,7 +228,7 @@ function App() {
                   <h1 className="typography-displays">Umar Fauzan <span className="text-gradient">Irvan</span></h1>
                   <p className="typography-lead animate-in delay-3">Full Stack Developer & <strong>Game Developer</strong> yang senang membangun sesuatu yang berfungsi dengan baik dan terlihat cantik.</p>
 
-                  <div style={{ gap: '5px' }} className="hero-buttons animate-in delay-4">
+                  <div style={{ gap: '5px' }} className="scrolls hero-buttons animate-in delay-4">
                     <a href="#projects" onClick={(e) => scrollToSection(e, 'projects')} className="btn btn-primary-first">
                       Lihat Projects
                     </a>

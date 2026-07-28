@@ -13,7 +13,7 @@ function Contact() {
   const hasInitialized = useRef(false)
 
   const chatQuestions = [
-    { id: 'name', text: 'Hai 👋 Siapa nama kamu?', placeholder: 'Ketik nama kamu disini...' },
+    { id: 'name', text: 'Hai Siapa nama kamu?', placeholder: 'Ketik nama kamu disini...' },
     { id: 'email', text: 'Senang bertemu dengan kamu! Apa email kamu?', placeholder: 'email@example.com' },
     { id: 'message', text: 'Bagus, ada pesan apa yang mau kamu sampaikan?', placeholder: 'Tulis pesan kamu disini...' },
   ]
