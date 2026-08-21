@@ -11,9 +11,9 @@ export const content = {
     about: {
       title: "Tentang Saya",
       description: [
-        "Halo! Saya <strong>Umar Fauzan Irvan</strong>, siswa <strong>SMK Wikrama Bogor</strong> yang memiliki minat di bidang pengembangan web, aplikasi mobile, UI/UX, dan game.",
+        "Halo! Saya <strong>Umar Fauzan Irvan</strong>, Siswa <strong>SMK Wikrama Bogor</strong> yang memiliki minat di bidang Pengembangan web, Aplikasi Mobile, UI/UX, dan Game.",
         "Saat ini saya terus mengembangkan kemampuan sebagai <strong>Fullstack Developer</strong> dengan membangun berbagai proyek dan mempelajari teknologi baru.",
-        "Di luar belajar, saya senang membuat game, membaca buku, dan bermain badminton."
+        "Di luar belajar, Saya senang membuat Game, Membaca buku, serta Bermain Badminton."
       ]
     },
     skills: {
@@ -26,10 +26,10 @@ export const content = {
           name: "Desain",
           skills: [
             { name: "Adobe Premiere", icon: "icons/adobe-premiere.png", progress: 80, description: "Software editing video profesional untuk membuat konten berkualitas tinggi." },
-            { name: "Capcut", icon: "icons/capcut.png", progress: 95, description: "Aplikasi editing video mobile dengan fitur canggih untuk edit cepat." },
-            { name: "Canva", icon: "icons/canva.webp", progress: 90, description: "Alat desain grafis untuk membuat visual dan presentasi yang menakjubkan." },
-            { name: "Figma", icon: "icons/figma.png", progress: 85, description: "Alat desain antarmuka kolaboratif untuk prototyping UI/UX." },
-            { name: "Filmora", icon: "icons/filmora.png", progress: 90, description: "Editor video yang mudah digunakan dengan efek dan template canggih." },
+            { name: "Capcut", icon: "icons/capcut.png", progress: 99, description: "Aplikasi editing video mobile dengan fitur canggih untuk edit cepat." },
+            { name: "Canva", icon: "icons/canva.webp", progress: 95, description: "Alat desain grafis untuk membuat visual dan presentasi yang menakjubkan." },
+            { name: "Figma", icon: "icons/figma.png", progress: 89, description: "Alat desain antarmuka kolaboratif untuk prototyping UI/UX." },
+            { name: "Filmora", icon: "icons/filmora.png", progress: 94, description: "Editor video yang mudah digunakan dengan efek dan template canggih." },
             { name: "Ibis Paint", icon: "https://play-lh.googleusercontent.com/s8moWkCF9wE-ynJgNyq8k3uhhVlbQLdphqTYJWkrsLRxkFZxx9FvykHmwXYmTl_h0l8", progress: 25, description: "Aplikasi lukisan digital populer untuk membuat ilustrasi dan karya seni." }
           ]
         },
@@ -37,17 +37,17 @@ export const content = {
           name: "Pemrograman",
           skills: [
             { name: "HTML", icon: "icons/html.png", progress: 97, description: "Bahasa markup untuk menstrukturkan konten web." },
-            { name: "CSS", icon: "icons/css.png", progress: 90, description: "Bahasa styling untuk mendesain layout dan tampilan web." },
-            { name: "JavaScript", icon: "icons/js.png", progress: 80, description: "Bahasa pemrograman untuk pengembangan web interaktif." },
-            { name: "ReactJS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg", progress: 70, description: "Library JavaScript untuk membangun antarmuka pengguna." },
+            { name: "CSS", icon: "icons/css.png", progress: 94, description: "Bahasa styling untuk mendesain layout dan tampilan web." },
+            { name: "JavaScript", icon: "icons/js.png", progress: 79, description: "Bahasa pemrograman untuk pengembangan web interaktif." },
+            { name: "ReactJS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg", progress: 73, description: "Library JavaScript untuk membangun antarmuka pengguna." },
             { name: "Bootstrap", icon: "icons/bootstrap.png", progress: 80, description: "Framework CSS untuk desain web responsif dan mobile-first." },
             { name: "Laravel", icon: "icons/laravel.png", progress: 55, description: "Framework PHP untuk membangun aplikasi web yang handal." },
             { name: "PHP", icon: "icons/php.png", progress: 60, description: "Bahasa scripting server-side untuk pengembangan web dinamis." },
             { name: "Kotlin", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg", progress: 10, description: "Bahasa pemrograman modern untuk pengembangan Android." },
-            { name: "Flutter", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg", progress: 35, description: "UI toolkit untuk membangun aplikasi yang dikompilasi secara native." },
-            { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg", progress: 15, description: "Database NoSQL untuk menyimpan dan mengelola data berorientasi dokumen." },
-            { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg", progress: 20, description: "Sistem database relasional open-source yang canggih." },
-            { name: "Postman", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg", progress: 45, description: "Platform perangkat lunak yang digunakan oleh developer untuk mendesain, membangun, menguji, dan mendokumentasikan API." }
+            { name: "Flutter", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg", progress: 45, description: "UI toolkit untuk membangun aplikasi yang dikompilasi secara native." },
+            { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg", progress: 55, description: "Database NoSQL untuk menyimpan dan mengelola data berorientasi dokumen." },
+            { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg", progress: 30, description: "Sistem database relasional open-source yang canggih." },
+            { name: "Postman", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg", progress: 60, description: "Platform perangkat lunak yang digunakan oleh developer untuk mendesain, membangun, menguji, dan mendokumentasikan API." }
           ]
         },
         {
@@ -68,12 +68,13 @@ export const content = {
         { id: 3, name: "HTML & CSS", date: "Agustus 2024", image: "sertifikat/HTML_CSS.png" },
         { id: 3, name: "React JS", date: "Mei 2026", image: "sertifikat/Sertifikat_React.png" },
         { id: 3, name: "Javascript", date: "Mei 2026", image: "sertifikat/Sertifikat_JS.png" },
-        { id: 4, name: "Workshop Build, Play, Earn", date: "April 2025", image: "sertifikat/Workshop_Buldgame.png" },
-        { id: 5, name: "Minecraft Hour Of Code", date: "2022", image: "sertifikat/eyJuYW1lIjoiVW1hciBGYXV6YW4gSXJ2YW4iLCJjb3Vyc2UiOiJtZWVfZXN0YXRlIiwiZG9ub3IiOiJCYWxsbWVyIEdyb3VwIn0.jpg" },
-        { id: 6, name: "Hour Of Code", date: "November 2024", image: "sertifikat/eyJuYW1lIjoiVW1hciBGYXV6YW4gSXJ2YW4iLCJjb3Vyc2UiOiJtZWUiLCJkb25vciI6IkFsZnJlZCBMaW4ifQ.jpg" },
-        { id: 7, name: "Linux Fundamental", date: "2025", image: "sertifikat/Fundamental_Linux.png" },
-        { id: 8, name: "Bahasa Jepang", date: "2025", image: "sertifikat/certificates japanese.png" },
-        { id: 9, name: "Flutter Fundamental", date: "2025", image: "sertifikat/Sertifikat_Flutter.png" }
+        { id: 4, name: "NodeJS(API)", date: "Agustus 2026", image: "sertifikat/Sertifikat_API.png" },
+        { id: 5, name: "Workshop Build, Play, Earn", date: "April 2025", image: "sertifikat/Workshop_Buldgame.png" },
+        { id: 6, name: "Minecraft Hour Of Code", date: "2022", image: "sertifikat/eyJuYW1lIjoiVW1hciBGYXV6YW4gSXJ2YW4iLCJjb3Vyc2UiOiJtZWVfZXN0YXRlIiwiZG9ub3IiOiJCYWxsbWVyIEdyb3VwIn0.jpg" },
+        { id: 7, name: "Hour Of Code", date: "November 2024", image: "sertifikat/eyJuYW1lIjoiVW1hciBGYXV6YW4gSXJ2YW4iLCJjb3Vyc2UiOiJtZWUiLCJkb25vciI6IkFsZnJlZCBMaW4ifQ.jpg" },
+        { id: 8, name: "Linux Fundamental", date: "2025", image: "sertifikat/Fundamental_Linux.png" },
+        { id: 9, name: "Bahasa Jepang", date: "2025", image: "sertifikat/certificates japanese.png" },
+        { id: 10, name: "Flutter Fundamental", date: "2025", image: "sertifikat/Sertifikat_Flutter.png" }
       ]
     },
     gameProject: {
@@ -101,7 +102,7 @@ export const content = {
       phone: "+6281779546781"
     },
     footer: {
-      text: "© 2026 Umar Fauzan Irvan. Hak cipta dilindungi."
+      text: "© 2026 Umar Fauzan Irvan."
     }
   }
 };
