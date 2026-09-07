@@ -261,7 +261,7 @@ function App() {
                 <div className="typography-container">
                   <div className="about-wrapper">
                     <div className="profile-wrapper">
-                      <img src={getProfileImage()} alt="Profile" className="profile-img" />
+                      <img src={getProfileImage()} alt="Umar Fauzan Irvan - Full Stack Developer & UI UX Designer" className="profile-img" />
                     </div>
                     <div className="about-content">
                       <h2 className="typography-h1">Tentang Saya</h2>
@@ -570,7 +570,7 @@ function App() {
                     </div>
 
                     <div className="contact-right">
-                      <img src="/img_web/block.gif" alt="Mario" className="contact-mascot" />
+                      <img src="/img_web/block.gif" alt="Umar Fauzan Irvan Portfolio Mascot" className="contact-mascot" />
                     </div>
                   </div>
                 </div>

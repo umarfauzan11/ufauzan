@@ -55,7 +55,7 @@ export default function CertificateShowcase({ certificates }) {
         <div className="certificate-slide prev-slide" style={{ transform: 'translate(-50%, -50%) translateX(-65%) translateZ(-200px) rotateY(15deg) scale(0.75)' }} onClick={() => setActiveIndex((activeIndex - 1 + certificates.length) % certificates.length)}>
           <img
             src={`/${prevCertData.image}`}
-            alt={prevCertData.name}
+            alt={`Sertifikat ${prevCertData.name} - Umar Fauzan Irvan`}
             className="certificate-image"
           />
         </div>
@@ -63,7 +63,7 @@ export default function CertificateShowcase({ certificates }) {
         <div className="certificate-slide active-slide" style={{ transform: 'translate(-50%, -50%) translateZ(0) rotateY(0deg) scale(1)' }} onClick={openModal}>
           <img
             src={`/${currentCert.image}`}
-            alt={currentCert.name}
+            alt={`Sertifikat ${currentCert.name} - Umar Fauzan Irvan`}
             className="certificate-image"
           />
         </div>
@@ -71,7 +71,7 @@ export default function CertificateShowcase({ certificates }) {
         <div className="certificate-slide next-slide" style={{ transform: 'translate(-50%, -50%) translateX(65%) translateZ(-200px) rotateY(-15deg) scale(0.75)' }} onClick={() => setActiveIndex((activeIndex + 1) % certificates.length)}>
           <img
             src={`/${nextCertData.image}`}
-            alt={nextCertData.name}
+            alt={`Sertifikat ${nextCertData.name} - Umar Fauzan Irvan`}
             className="certificate-image"
           />
         </div>
