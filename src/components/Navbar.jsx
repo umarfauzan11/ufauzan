@@ -36,13 +36,19 @@ export default function Navbar({ isScrolled, mobileMenuOpen, setMobileMenuOpen }
   return (
     <header className={isScrolled ? 'header-scrolled' : ''}>
       <nav>
+        <div className="nav-left">
+          <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="logo-text" aria-label="Umar Fauzan Irvan">
+            <img src="/favicon.svg" alt="" width={20}/>
+          </Link>
+        </div>
+
         <button className={`mobile-menu-toggle ${mobileMenuOpen ? 'active' : ''}`} onClick={() => setMobileMenuOpen(v => !v)} aria-label="Toggle navigation">
           <span className="hamburger-line"></span>
           <span className="hamburger-line"></span>
           <span className="hamburger-line"></span>
         </button>
 
-        <ul className={`nav-right nav-desktop ${mobileMenuOpen ? 'active' : ''}`}>
+        <ul className={`nav-right nav-desktop`}>
           {navItems.map(item => (
             <li key={item.id}>
               <a href={`#${item.id}`} onClick={(e) => handleNavClick(e, item.id)} aria-label={item.label}>
@@ -55,22 +61,20 @@ export default function Navbar({ isScrolled, mobileMenuOpen, setMobileMenuOpen }
           </li>
         </ul>
 
-        <ul className={`nav-right nav-mobile ${mobileMenuOpen ? 'active' : ''}`}>
+        <div className={`nav-mobile ${mobileMenuOpen ? 'active' : ''}`}>
           {navItems.map(item => (
-            <li key={item.id}>
-              <a href={`#${item.id}`} onClick={(e) => handleNavClick(e, item.id)} aria-label={item.label}>
-                <span className="nav-icon">{item.icon}</span>
-              </a>
-            </li>
+            <a key={item.id} href={`#${item.id}`} onClick={(e) => handleNavClick(e, item.id)} aria-label={item.label} className="nav-mobile-item">
+              <span className="nav-icon">{item.icon}</span>
+              <span className="nav-mobile-label">{item.label}</span>
+            </a>
           ))}
-          <li>
-            <Link to="/contact" onClick={() => setMobileMenuOpen(false)} aria-label="Kontak">
-              <span className="nav-icon">
-                <SvgIcon><path d="M22 12h-7"/><path d="M22 7h-4"/><path d="M22 17h-4"/><path d="M2 12h8"/><circle cx="4" cy="12" r="2"/><path d="M10 12l-2 10"/></SvgIcon>
-              </span>
-            </Link>
-          </li>
-        </ul>
+          <Link to="/contact" onClick={() => setMobileMenuOpen(false)} aria-label="Kontak" className="nav-mobile-item">
+            <span className="nav-icon">
+              <SvgIcon><path d="M22 12h-7"/><path d="M22 7h-4"/><path d="M22 17h-4"/><path d="M2 12h8"/><circle cx="4" cy="12" r="2"/><path d="M10 12l-2 10"/></SvgIcon>
+            </span>
+            <span className="nav-mobile-label">Kontak</span>
+          </Link>
+        </div>
       </nav>
     </header>
   )

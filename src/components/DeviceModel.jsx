@@ -34,26 +34,35 @@ class CanvasErrorBoundary extends Component {
 }
 
 // === MACBOOK 3D MODEL ===
-function MacBookModel({ screenshotUrl, shakeDir, transitionId }) {
+function MacBookModel({ images = [], activeIndex = 0, shakeDir, transitionId }) {
     const group = useRef()
-    const texture = useTexture(screenshotUrl)
+    const validImages = Array.isArray(images) && images.length > 0
+        ? images.map(img => (img.startsWith('/') || img.startsWith('http') ? img : `/${img}`))
+        : ['/img_web/placeholder-project.png']
+
+    const textures = useTexture(validImages)
+    const currentTexture = Array.isArray(textures)
+        ? (textures[activeIndex] || textures[0])
+        : textures
+
     const shakeTimer = useRef(0)
     const prevTransitionId = useRef(0)
     const materialRef = useRef()
 
-    useFrame(() => {
-        if (materialRef.current && materialRef.current.opacity < 1) {
-            materialRef.current.opacity = Math.min(materialRef.current.opacity + 0.02, 1)
-        }
-    })
-
     useFrame((state, delta) => {
+        if (materialRef.current && materialRef.current.opacity < 1) {
+            materialRef.current.opacity = Math.min(materialRef.current.opacity + delta * 4, 1)
+        }
+
         if (!group.current) return
 
         // Detect click baru → trigger shake
         if (transitionId !== prevTransitionId.current) {
             prevTransitionId.current = transitionId
             shakeTimer.current = 0.5  // 0.5 detik shake
+            if (materialRef.current) {
+                materialRef.current.opacity = 0.7 // quick subtle fade
+            }
         }
 
         // Shake animation
@@ -72,7 +81,6 @@ function MacBookModel({ screenshotUrl, shakeDir, transitionId }) {
         }
     })
 
-
     return (
         <group ref={group}>
             {/* === SCREEN LID (tilted back) === */}
@@ -82,15 +90,10 @@ function MacBookModel({ screenshotUrl, shakeDir, transitionId }) {
                     <meshStandardMaterial color="#4a4a50" roughness={0.35} metalness={0.7} />
                 </RoundedBox>
 
-                {/* Screen bezel — black */}
-                {/* <RoundedBox args={[4.9, 3.15, 0.01]} radius={0.05} smoothness={4} position={[0, 0, 0.045]}>
-          <meshStandardMaterial color="#111111" roughness={0.8} />
-        </RoundedBox> */}
-
-                {/* Screen display — shows screenshot */}
+                {/* Screen display — shows preloaded screenshot */}
                 <mesh position={[0, 0.05, 0.05]}>
                     <planeGeometry args={[5.0, 3.05]} />
-                    <meshBasicMaterial ref={materialRef} map={texture} transparent opacity={0} />
+                    <meshBasicMaterial ref={materialRef} map={currentTexture} transparent opacity={1} />
                 </mesh>
 
                 {/* Apple logo on back */}
@@ -164,9 +167,11 @@ function LoadingFallback() {
 
 
 // === Main Export ===
-export default function DeviceModel({ screenshotUrl, shakeDir, transitionId }) {
+export default function DeviceModel({ images, activeIndex = 0, screenshotUrl, shakeDir, transitionId }) {
+    const projectImages = images || (screenshotUrl ? [screenshotUrl] : ['/img_web/placeholder-project.png'])
+
     return (
-        <div style={{ width: '100%', height: '106vh' }}>
+        <div style={{ width: '100%', height: '100%' }}>
             <CanvasErrorBoundary>
                 <Canvas
                     camera={{ position: [0, 0, 8.3], fov: 35 }}
@@ -181,7 +186,12 @@ export default function DeviceModel({ screenshotUrl, shakeDir, transitionId }) {
                     <pointLight position={[0, 3, 3]} intensity={0.4} color="#ffffff" />
 
                     <Suspense fallback={<LoadingFallback />}>
-                        <MacBookModel screenshotUrl={screenshotUrl} shakeDir={shakeDir} transitionId={transitionId} />
+                        <MacBookModel
+                            images={projectImages}
+                            activeIndex={activeIndex}
+                            shakeDir={shakeDir}
+                            transitionId={transitionId}
+                        />
                     </Suspense>
                 </Canvas>
             </CanvasErrorBoundary>

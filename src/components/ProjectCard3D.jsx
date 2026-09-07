@@ -44,7 +44,8 @@ export default function ProjectCard3D({ projects }) {
             </div>
           }>
             <DeviceModel
-              screenshotUrl={currentProject.image || '/img_web/placeholder-project.png'}
+              images={projects.map((p) => p.image || '/img_web/placeholder-project.png')}
+              activeIndex={activeIndex}
               shakeDir={shakeDir}
               transitionId={transitionId}
             />

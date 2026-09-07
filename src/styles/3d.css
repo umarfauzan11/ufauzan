@@ -4,10 +4,10 @@
 
 /* MacBook Viewport */
 .project-showcase {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
   max-width: 1140px;
   margin: 0 auto;
+  position: relative;
 }
 
 .project-showcase-viewport canvas {
@@ -16,12 +16,10 @@
 
 /* Project Info — below laptop */
 .project-showcase-info {
-  position: fixed;
-  right: 0;
-  bottom: 15rem;
-  left: 0;
+  position: relative;
   text-align: center;
-  margin-top: 16px;
+  margin-top: 24px;
+  z-index: 5;
 }
 
 /* Navigation */
@@ -183,25 +181,142 @@
 
 
 
-/* === Certificate Showcase (iPhone) === */
-.cert-showcase {
+/* ================================================
+   EMBLA CAROUSEL CERTIFICATE SHOWCASE
+   ================================================ */
+.embla-cert-showcase {
   width: 100%;
   max-width: 1140px;
   margin: 0 auto;
+  position: relative;
+  padding: 10px 0 20px;
 }
 
-.cert-showcase-viewport {
+.embla {
+  overflow: hidden;
   width: 100%;
-  height: 500px;
+  padding: 24px 0 16px;
+  cursor: grab;
+}
+
+.embla:active {
+  cursor: grabbing;
+}
+
+.embla__container {
+  display: flex;
+  touch-action: pan-y pinch-zoom;
+  margin-left: -20px;
+}
+
+.embla__slide {
+  flex: 0 0 60%;
+  min-width: 0;
+  padding-left: 20px;
   position: relative;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, filter 0.4s ease;
+  transform: scale(0.88);
+  opacity: 0.5;
+  filter: blur(1px);
+}
+
+.embla__slide.is-active {
+  transform: scale(1);
+  opacity: 1;
+  filter: blur(0);
+  z-index: 10;
+}
+
+.embla__slide__inner {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  background: white;
+  border: 1px solid rgba(123, 104, 146, 0.2);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.embla__slide.is-active .embla__slide__inner {
+  box-shadow: 0 20px 50px rgba(123, 104, 146, 0.28);
+  border-color: var(--color-2);
+}
+
+.embla__slide__img {
+  width: 100%;
+  height: 380px;
+  object-fit: contain;
+  background: #f8f8fc;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.embla__slide__overlay {
+  position: absolute;
+  inset: 0;
+  background: none;
   display: flex;
   align-items: center;
   justify-content: center;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
 }
 
-.cert-showcase-info {
+.embla__slide:hover .embla__slide__overlay {
+  opacity: 1;
+}
+
+.embla__slide__zoom {
+  background: white;
+  color: var(--color-1);
+  padding: 10px 18px;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.116);
+  transform: translateY(10px);
+  transition: transform 0.25s ease;
+}
+
+.embla__slide:hover .embla__slide__zoom {
+  transform: translateY(0);
+}
+
+.embla-cert-info {
   text-align: center;
   margin-top: 16px;
+}
+
+.embla__dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.embla__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(123, 104, 146, 0.3);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.embla__dot.is-selected {
+  background: var(--color-1);
+  width: 28px;
+  border-radius: 12px;
 }
 
 
@@ -390,72 +505,42 @@
   }
 }
 
-/* Certificate Carousel Enhancements */
-.certificate-slide {
-  left: 50%;
-  top: 50%;
-  cursor: pointer;
-  transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+/* === Embla Carousel Responsive === */
+@media (max-width: 992px) {
+  .embla__slide {
+    flex: 0 0 75%;
+  }
+
+  .embla__slide__img {
+    height: 320px;
+  }
 }
 
-.certificate-slide:hover {
-  filter: brightness(1.1);
-}
-
-.certificate-slide.active-slide {
-  cursor: zoom-in;
-}
-
-.certificate-slide.prev-slide,
-.certificate-slide.next-slide {
-  cursor: pointer;
-}
-
-.cert-showcase-viewport {
-  width: 100%;
-  height: 500px;
-  position: relative;
-  perspective: 1200px;
-  overflow: visible;
-}
-
-.cert-showcase {
-  width: 100%;
-  max-width: 1140px;
-  margin: 0 auto;
-}
-
-.cert-showcase-info {
-  text-align: center;
-  margin-top: 24px;
-}
-
-.project-showcase-title {
-  cursor: default;
-}
-
-.project-showcase-desc {
-  cursor: default;
-}
-
-/* === Certificate Carousel Responsive === */
 @media (max-width: 768px) {
-  .cert-showcase-viewport {
-    height: 350px;
+  .embla {
+    padding: 16px 0;
   }
 
-  .certificate-slide {
-    width: 320px;
+  .embla__container {
+    margin-left: -12px;
   }
 
-  .certificate-slide.prev-slide {
-    transform: translateX(-80%) translateZ(-150px) rotateY(20deg) scale(0.65);
-    opacity: 0.2;
+  .embla__slide {
+    flex: 0 0 85%;
+    padding-left: 12px;
+    transform: scale(0.92);
   }
 
-  .certificate-slide.next-slide {
-    transform: translateX(80%) translateZ(-150px) rotateY(-20deg) scale(0.65);
-    opacity: 0.2;
+  .embla__slide.is-active {
+    transform: scale(1);
+  }
+
+  .embla__slide__img {
+    height: 250px;
+  }
+
+  .embla__slide__inner {
+    border-radius: 16px;
   }
 
   .project-nav-btn {
@@ -469,22 +554,12 @@
 }
 
 @media (max-width: 480px) {
-  .cert-showcase-viewport {
-    height: 280px;
+  .embla__slide {
+    flex: 0 0 90%;
   }
 
-  .certificate-slide {
-    width: 260px;
-  }
-
-  .certificate-slide.prev-slide {
-    transform: translateX(-85%) translateZ(-100px) rotateY(25deg) scale(0.6);
-    opacity: 0.15;
-  }
-
-  .certificate-slide.next-slide {
-    transform: translateX(85%) translateZ(-100px) rotateY(-25deg) scale(0.6);
-    opacity: 0.15;
+  .embla__slide__img {
+    height: 200px;
   }
 
   .project-nav-btn {
@@ -510,6 +585,7 @@
 
   .cert-modal-image-wrapper {
     padding: 20px 10px;
+    max-height: 60vh;
   }
 
   .cert-modal-info {

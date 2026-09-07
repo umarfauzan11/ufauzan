@@ -4,7 +4,6 @@ import { content } from './data/content'
 import Contact from './pages/Contact'
 import StyleGuide from './pages/StyleGuide'
 import Navbar from './components/Navbar'
-import CustomCursor from './components/CustomCursor'
 import CertificateShowcase from './components/CertificateShowcase'
 import ProjectCard3D from './components/ProjectCard3D'
 import Lenis from 'lenis'
@@ -208,7 +207,6 @@ function App() {
   return (
     <Router>
       <ScrollHandler />
-      <CustomCursor />
       <Routes>
         <Route path="/contact" element={<Contact />} />
         <Route path="/styleguide" element={<StyleGuide />} />
@@ -224,8 +222,8 @@ function App() {
               {/* 1. HERO SECTION - TYPOGRAPHY DISPLAY */}
               <section id="hero" className="hero-section">
                 <div className="typography-container">
-                  <p className="typography-caption">Halo, saya adalah</p>
                   <h1 className="typography-displays">Umar Fauzan <span className="text-gradient">Irvan</span></h1>
+                  <br />
                   <p className="typography-lead animate-in delay-3">Full Stack Developer & <strong>Game Developer</strong> yang senang membangun sesuatu yang berfungsi dengan baik dan terlihat cantik.</p>
 
                   <div style={{ gap: '5px' }} className="scrolls hero-buttons animate-in delay-4">
@@ -507,14 +505,21 @@ function App() {
                   <div className="typography-spacer-l"></div>
 
                   <div className="bento-grid">
-                    <div className="bento-card bento-card-large">
-                      <p className="typography-caption">2024 - Sekarang</p>
-                      <h3 className="typography-h2">Student Developer</h3>
-                      <p className="typography-body">
-                        Mengembangkan aplikasi web dan mobile secara mandiri serta mengerjakan beberapa proyek UMKM.
-                      </p>
+                    {/* Box 1: Student Developer (with Laptop image on right-middle) */}
+                    <div className="bento-card bento-card-large bento-card-student">
+                      <div className="bento-text-side">
+                        <p className="typography-caption">2024 - Sekarang</p>
+                        <h3 className="typography-h2">Student Developer</h3>
+                        <p className="typography-body">
+                          Mengembangkan aplikasi web dan mobile secara mandiri serta mengerjakan beberapa proyek UMKM.
+                        </p>
+                      </div>
+                      <div className="bento-image-wrapper">
+                        <img src="/img_web/laptop.png" alt="Student Developer Laptop" className="bento-laptop-img" />
+                      </div>
                     </div>
 
+                    {/* Box 2: Learning Web Development */}
                     <div className="bento-card">
                       <p className="typography-caption">2021 - 2023</p>
                       <h3 className="typography-h3">Learning Web Development</h3>
@@ -523,21 +528,36 @@ function App() {
                       </p>
                     </div>
 
-                    <div className="bento-card">
-                      <h3 className="typography-h2">23+</h3>
-                      <p className="typography-body">Proyek dibuat</p>
+                    {/* Box 3: 23+ Proyek (with Profile Photo on the left) */}
+                    <div className="bento-card bento-card-profile-stat">
+                      <div className="bento-avatar-wrapper">
+                        <img src="https://avatars.githubusercontent.com/u/195735281?s=60&v=4" alt="Umar Fauzan Irvan" className="bento-avatar-img" />
+                        <span className="bento-avatar-glow"></span>
+                      </div>
+                      <div className="bento-stat-content">
+                        <h3 className="typography-h2">23+</h3>
+                        <p className="typography-body">Proyek dibuat</p>
+                      </div>
                     </div>
 
-                    <div className="bento-card">
-                      <h3 className="typography-h2">2+ Tahun</h3>
-                      <p className="typography-body">Belajar coding</p>
+                    {/* Box 4: 2+ Tahun Belajar Coding (with Code Graphic on the right) */}
+                    <div className="bento-card bento-card-tech-stat">
+                      <div className="bento-stat-content">
+                        <h3 className="typography-h2">2+ Tahun</h3>
+                        <p className="typography-body">Belajar coding</p>
+                      </div>
+                      <div className="bento-tech-graphic">
+                        <img src="/icons/js.png" alt="Coding Experience" className="bento-badge-img" />
+                      </div>
                     </div>
 
+                    {/* Box 5: 12+ Teknologi */}
                     <div className="bento-card">
                       <h3 className="typography-h2">12+</h3>
                       <p className="typography-body">Teknologi dipelajari</p>
                     </div>
 
+                    {/* Box 6: 99% Komitmen */}
                     <div className="bento-card">
                       <h3 className="typography-h2">99%</h3>
                       <p className="typography-body">Komitmen menyelesaikan proyek</p>
@@ -545,42 +565,66 @@ function App() {
                   </div>
                 </div>
               </section>
+            </main>
 
-              {/* 8. CONTACT SECTION */}
-              <section id="contact" className="typography-section dark-section1">
+              {/* 8. FUTURISTIC 3D PERSPECTIVE FOOTER & CONTACT */}
+              <footer id="contact" className="footer-perspective-section">
                 <div className="typography-container">
-                  <div className="contact-layout">
-                    <div className="contact-left">
-                      <h2 className="typography-h1 light-text">Hubungi Saya</h2>
-                      <div className="typography-spacer-xl"></div>
-                      <p className="typography-lead light-text">
-                        Email: <strong>{t.contact.email}</strong>
+                  <div className="footer-3d-card">
+                    <div className="footer-glow-blob"></div>
+                    <div className="footer-content">
+
+                      <h2 className="footer-headline">
+                        Mari Bangun Sesuatu yang <span className="footer-highlight">Luar Biasa</span> Bersama
+                      </h2>
+                      <p className="footer-subtext">
+                        Punya ide website, aplikasi mobile, atau proyek digital yang ingin diwujudkan? Saya siap membantu dari konsep hingga rilis.
                       </p>
-                      <p className="typography-lead light-text">
-                        Phone: <strong>{t.contact.phone}</strong>
-                      </p>
-                      <div className="typography-spacer-l"></div>
-                      <div className="contact-icons">
-                        <a href={`mailto:${t.contact.email}`}><i className="fas fa-envelope"></i></a>
-                        <a href={`tel:${t.contact.phone}`}><i className="fas fa-phone"></i></a>
-                        <a href="https://www.linkedin.com/in/umar-fauzan-irvan-24139b363" target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin"></i></a>
-                        <a href="https://instagram.com/umarfauzan" target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram"></i></a>
-                        <a href="https://github.com/umarfauzan11" target="_blank" rel="noopener noreferrer"><i className="fab fa-github"></i></a>
+
+                      <div className="footer-cta-group">
+                        <Link to="/contact" className="btn footer-btn-primary">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '8px' }}>
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                          </svg>
+                          Mulai Diskusi Sekarang
+                        </Link>
+                        <a href={`mailto:${t.contact.email}`} className="btn footer-btn-secondary">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '8px' }}>
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                          </svg>
+                          {t.contact.email}
+                        </a>
+                      </div>
+
+                      <div className="footer-social-3d">
+                        <a href="https://www.linkedin.com/in/umar-fauzan-irvan-24139b363" target="_blank" rel="noopener noreferrer" className="footer-social-item linkedin" aria-label="LinkedIn">
+                          <i className="fab fa-linkedin"></i>
+                          <span>LinkedIn</span>
+                        </a>
+                        <a href="https://github.com/umarfauzan11" target="_blank" rel="noopener noreferrer" className="footer-social-item github" aria-label="GitHub">
+                          <i className="fab fa-github"></i>
+                          <span>GitHub</span>
+                        </a>
+                        <a href="https://instagram.com/umar_fauzan_irvan/" target="_blank" rel="noopener noreferrer" className="footer-social-item instagram" aria-label="Instagram">
+                          <i className="fab fa-instagram"></i>
+                          <span>Instagram</span>
+                        </a>
+                        <a href="https://youtube.com/@UFauzan" target="_blank" rel="noopener noreferrer" className="footer-social-item youtube" aria-label="YouTube">
+                          <i className="fab fa-youtube"></i>
+                          <span>YouTube</span>
+                        </a>
                       </div>
                     </div>
+                  </div>
 
-                    <div className="contact-right">
-                      <img src="/img_web/block.gif" alt="Umar Fauzan Irvan Portfolio Mascot" className="contact-mascot" />
+                  <div className="footer-bottom-bar">
+                    <div className="footer-brand">
+                      <span className="footer-tagline">Umar Fauzan Irvan • Full Stack Developer & UI/UX Designer</span>
                     </div>
                   </div>
                 </div>
-              </section>
-            </main>
-            <footer>
-              <div className="typography-container text-center">
-                <a href="/StyleGuide" className="typography-small">© 2026 Umar Fauzan Irvan. All rights reserved.</a>
-              </div>
-            </footer>
+              </footer>
           </>
         } />
       </Routes>
